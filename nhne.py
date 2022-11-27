@@ -348,14 +348,50 @@ for index, i in enumerate(perm):
 
     prio["At"][1], prio["D"][1], prio["HP"][1], prio["Ag"][1] = 0, 0, 0, 0
 
-    if index == 4790016 or index == 47900160 or index == 47900160*2 or index == 47900160*3 or index == 47900160*4 or index == 47900160*5 or index == 47900160*6 or index == 47900160*7 or index == 47900160*8 or index == 47900160*9:
+    if index == 4790016:
         end = time.time()
         print(f"estimasi waktu: {round((end - start) * 100 / 60)} menit", end="\r")
     
+    if index == 47900160:
+        end = time.time()
+        print(f"estimasi waktu: {round((end - start) * 10 / 60)} menit", end="\r")
+
+    if index == 47900160*2:
+        end = time.time()
+        print(f"estimasi waktu: {round((end - start) * (10 / 2) / 60)} menit", end="\r")
+
+    if index == 47900160*3:
+        end = time.time()
+        print(f"estimasi waktu: {round((end - start) * (10 / 3) / 60)} menit", end="\r")
+
+    if index == 47900160*4:
+        end = time.time()
+        print(f"estimasi waktu: {round((end - start) * (10 / 4) / 60)} menit", end="\r")
+
+    if index == 47900160*5:
+        end = time.time()
+        print(f"estimasi waktu: {round((end - start) * (10 / 5) / 60)} menit", end="\r")
+
+    if index == 47900160*6:
+        end = time.time()
+        print(f"estimasi waktu: {round((end - start) * (10 / 6) / 60)} menit", end="\r")
+
+    if index == 47900160*7:
+        end = time.time()
+        print(f"estimasi waktu: {round((end - start) * (10 / 7) / 60)} menit", end="\r")    
+    
+    if index == 47900160*8:
+        end = time.time()
+        print(f"estimasi waktu: {round((end - start) * (10 / 8) / 60)} menit", end="\r")
+
+    if index == 47900160*9:
+        end = time.time()
+        print(f"estimasi waktu: {round((end - start) * (10 / 9) / 60)} menit", end="\r")
+
     if index == 47900160*10:
         end = time.time()
         print(f"selesai")
-        print(f"waktu terlampaui: {round((end - start) * 100 / 60)} menit")
+        print(f"waktu terlampaui: {round((end - start) * 1 / 60)} menit")
         
 print("--- Atribut ---")
 print("Attack:", prio["At"][0])
