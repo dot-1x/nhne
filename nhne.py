@@ -77,7 +77,7 @@ while True:
         print("Tidak sesuai")
 
 perm = permutations([ninja[0], ninja[1], ninja[2], ninja[3], ninja[4], ninja[5], ninja[6], ninja[7], ninja[8], ninja[9], ninja[10], ninja[11]])
-b = [ninjautama[0], ninjautama[1], ninjautama[2]]
+nu = [ninjautama[0], ninjautama[1], ninjautama[2]]
 
 prio = {
     "HP": [0, 0],
@@ -112,7 +112,7 @@ for index, i in enumerate(perm):
         elif i[1][2] == k:
             prio["Ag"][1] += 10
     
-    if i[1][3] == b[0][1]:
+    if i[1][3] == nu[0][1]:
         if i[1][3] == m:
             prio["At"][1] += 10
         elif i[1][3] == b:
@@ -132,7 +132,7 @@ for index, i in enumerate(perm):
         elif i[2][2] == k:
             prio["Ag"][1] += 10
     
-    if i[2][3] == b[1][1]:
+    if i[2][3] == nu[1][1]:
         if i[2][3] == m:
             prio["At"][1] += 10
         elif i[2][3] == b:
@@ -152,7 +152,7 @@ for index, i in enumerate(perm):
         elif i[3][2] == k:
             prio["Ag"][1] += 10
 
-    if i[3][3] == b[2][1]:
+    if i[3][3] == nu[2][1]:
         if i[3][3] == m:
             prio["At"][1] += 10
         elif i[3][3] == b:
@@ -172,7 +172,7 @@ for index, i in enumerate(perm):
         elif i[5][1] == k:
             prio["Ag"][1] += 10
     
-    if i[5][2] == b[0][4]:
+    if i[5][2] == nu[0][4]:
         if i[5][2] == m:
             prio["At"][1] += 10
         elif i[5][2] == b:
@@ -192,7 +192,7 @@ for index, i in enumerate(perm):
         elif i[6][1] == k:
             prio["Ag"][1] += 10
     
-    if i[6][4] == b[2][2]:
+    if i[6][4] == nu[2][2]:
         if i[6][4] == m:
             prio["At"][1] += 10
         elif i[6][4] == b:
@@ -222,7 +222,7 @@ for index, i in enumerate(perm):
         elif i[7][2] == k:
             prio["Ag"][1] += 10
     
-    if i[8][1] == b[0][3]:
+    if i[8][1] == nu[0][3]:
         if i[8][1] == m:
             prio["At"][1] += 10
         elif i[8][1] == b:
@@ -242,7 +242,7 @@ for index, i in enumerate(perm):
         elif i[8][2] == k:
             prio["Ag"][1] += 10
     
-    if i[9][1] == b[1][3]:
+    if i[9][1] == nu[1][3]:
         if i[9][1] == m:
             prio["At"][1] += 10
         elif i[9][1] == b:
@@ -262,7 +262,7 @@ for index, i in enumerate(perm):
         elif i[9][2] == k:
             prio["Ag"][1] += 10
 
-    if i[10][1] == b[2][3]:
+    if i[10][1] == nu[2][3]:
         if i[10][1] == m:
             prio["At"][1] += 10
         elif i[10][1] == b:
@@ -292,7 +292,7 @@ for index, i in enumerate(perm):
         elif i[11][1] == k:
             prio["Ag"][1] += 10
     
-    if b[0][2] == b[1][4]:
+    if nu[0][2] == nu[1][4]:
         if i[11][1] == m:
             prio["At"][1] += 10
         elif i[11][1] == b:
@@ -302,7 +302,7 @@ for index, i in enumerate(perm):
         elif i[11][1] == k:
             prio["Ag"][1] += 10
 
-    if b[1][2] == b[2][4]:
+    if nu[1][2] == nu[2][4]:
         if i[11][1] == m:
             prio["At"][1] += 10
         elif i[11][1] == b:
@@ -358,16 +358,11 @@ for index, i in enumerate(perm):
         print(f"estimasi waktu: {round((end - start) * 100 / 60)} menit")
         print(f"Harap tunggu...")
 
-    if index == 4790016 * 2:
+    if index == 47900160:
         end = time.time()
-        print(f"estimasi waktu: {round((end - start) * 50 / 60)} menit")
+        print(f"estimasi waktu: {round((end - start) * 10 / 60)} menit")
         print(f"Harap tunggu...")
 
-    if index == 4790016 * 5:
-        end = time.time()
-        print(f"estimasi waktu: {round((end - start) * 20 / 60)} menit")
-        print(f"Harap tunggu...")
-    
 print("--- Atribut ---")
 print("Attack:", prio["At"][0])
 print("Defense:", prio["D"][0])
@@ -375,5 +370,5 @@ print("HP:", prio["HP"][0] * 5)
 print("Agility:", prio["Ag"][0])
 print("--- Deploy ---")
 print("Baris 1:", deploy[0][0], ",", deploy[1][0], ",", deploy[2][0], ",", deploy[3][0], ",", deploy[4][0])
-print("Baris 2:", deploy[5][0], ",", b[0][0], ",", b[1][0], ",", b[2][0], ",", deploy[6][0])
+print("Baris 2:", deploy[5][0], ",", nu[0][0], ",", nu[1][0], ",", nu[2][0], ",", deploy[6][0])
 print("Baris 3:", deploy[7][0], ",", deploy[8][0], ",", deploy[9][0], ",", deploy[10][0], ",", deploy[11][0])
