@@ -1,58 +1,172 @@
 from itertools import permutations
 import time
 
-m = "m"
-b = "b"
-h = "h"
-k = "k"
+m = "Merah"
+b = "Biru"
+h = "Hijau"
+k = "Kuning"
 
-warna = {
-    m: "merah",
-    b: "biru",
-    h: "hijau",
-    k: "kuning"
-}
+dataninja = [
+  ["Yoroi","Biru","Kuning","Hijau","Merah"],
+  ["Konoha Guard","Hijau","Merah","Kuning","Kuning"],
+  ["Tsurugi Misumi","Kuning","Hijau","Merah","Biru"],
+  ["Anbu Guard","Hijau","Biru","Merah","Biru"],
+  ["Anbu Sentry","Kuning","Merah","Biru","Biru"],
+  ["Konoha Sentry","Hijau","Hijau","Biru","Merah"],
+  ["Karui","Kuning","Hijau","Merah","Hijau"],
+  ["Kimada","Hijau","Kuning","Biru","Biru"],
+  ["Konohamaru","Kuning","Hijau","Hijau","Biru"],
+  ["Misthide Guard","Biru","Biru","Kuning","Merah"],
+  ["Sandhide Sentry","Hijau","Hijau","Kuning","Merah"],
+  ["Omoi","Kuning","Biru","Kuning","Merah"],
+  ["Misthide Sentry","Hijau","Merah","Biru","Hijau"],
+  ["Mizuki","Kuning","Biru","Merah","Biru"],
+  ["Sandhide Guard","Hijau","Merah","Biru","Biru"],
+  ["Temari","Hijau","Biru","Hijau","Kuning"],
+  ["Iruka","Hijau","Kuning","Merah","Biru"],
+  ["Kankuro","Biru","Kuning","Hijau","Kuning"],
+  ["Lee","Merah","Biru","Biru","Merah"],
+  ["Shikamaru","Merah","Hijau","Kuning","Biru"],
+  ["Nenji","Kuning","Hijau","Biru","Merah"],
+  ["Sasuke","Kuning","Merah","Biru","Hijau"],
+  ["Hinata","Kuning","Biru","Biru","Biru"],
+  ["Shizune","Hijau","Hijau","Biru","Kuning"],
+  ["Kiba Inuzuka","Biru","Biru","Merah","Merah"],
+  ["Shino","Hijau","Hijau","Biru","Biru"],
+  ["Tenten","Kuning","Merah","Biru","Biru"],
+  ["Ino","Biru","Hijau","Merah","Hijau"],
+  ["Naruto","Kuning","Hijau","Hijau","Merah"],
+  ["Choji","Hijau","Biru","Hijau","Hijau"],
+  ["Sakura","Biru","Biru","Merah","Kuning"],
+  ["Kabuto","Hijau","Biru","Biru","Merah"],
+  ["Karin","Merah","Hijau","Hijau","Biru"],
+  ["Jugo","Merah","Merah","Biru","Biru"],
+  ["Kimimaro","Merah","Biru","Biru","Merah"],
+  ["Sakon and Ukon","Kuning","Hijau","Hijau","Biru"],
+  ["Sai","Hijau","Merah","Kuning","Biru"],
+  ["Suigetsu","Biru","Merah","Biru","Kuning"],
+  ["Jirobo","Biru","Hijau","Hijau","Biru"],
+  ["Tayuya","Hijau","Merah","Hijau","Merah"],
+  ["Zabuza","Biru","Merah","Kuning","Biru"],
+  ["Gaara","Biru","Merah","Biru","Kuning"],
+  ["Haku","Kuning","Kuning","Merah","Merah"],
+  ["Kidomaru","Hijau","Kuning","Hijau","Biru"],
+  ["Raido Ashinami","Kuning","Hijau","Biru","Hijau"],
+  ["Gekkou Hayate","Kuning","Merah","Biru","Kuning"],
+  ["Genma Shiranui","Merah","Hijau","Kuning","Merah"],
+  ["Anko Mitarashi","Hijau","Merah","Merah","Kuning"],
+  ["Aoba Yamashiro","Biru","Merah","Biru","Biru"],
+  ["Ebisu","Biru","Merah","Merah","Biru"],
+  ["Ibiki","Hijau","Hijau","Merah","Kuning"],
+  ["Darui","Kuning","Merah","Biru","Biru"],
+  ["Danzo","Hijau","Biru","Hijau","Merah"],
+  ["Hanzo","Merah","Hijau","Biru","Biru"],
+  ["Ao","Biru","Merah","Kuning","Hijau"],
+  ["Chojuro","Merah","Merah","Hijau","Hijau"],
+  ["Kisame","Kuning","Biru","Biru","Merah"],
+  ["Zetsu","Kuning","Hijau","Biru","Merah"],
+  ["Deidara","Kuning","Merah","Merah","Kuning"],
+  ["Konan","Biru","Kuning","Kuning","Kuning"],
+  ["Sasori","Hijau","Merah","Biru","Merah"],
+  ["Hidan","Biru","Biru","Biru","Hijau"],
+  ["Kakuzu","Hijau","Hijau","Biru","Hijau"],
+  ["Seven Tails Jinchuriki","Biru","Hijau","Hijau","Biru"],
+  ["Four Tails Jinchuriki","Kuning","Merah","Merah","Biru"],
+  ["Six Tails Jinchuriki","Kuning","Biru","Biru","Merah"],
+  ["Five Tails Jinchuriki","Hijau","Kuning","Hijau","Hijau"],
+  ["Granny Chiyo","Kuning","Merah","Biru","Hijau"],
+  ["Three Tails Jinchuriki","Merah","Biru","Hijau","Merah"],
+  ["Two Tails Jinchuriki","Merah","Merah","Kuning","Hijau"],
+  ["Yamato","Biru","Biru","Hijau","Biru"],
+  ["Yuuhi Kurenai","Kuning","Merah","Biru","Kuning"],
+  ["Asuma","Biru","Merah","Hijau","Kuning"],
+  ["Baki","Merah","Hijau","Merah","Merah"],
+  ["Cursed Seal Sasuke","Merah","Biru","Kuning","Merah"],
+  ["Kazekage Gaara","Kuning","Hijau","Biru","Merah"],
+  ["Obito","Hijau","Biru","Hijau","Hijau"],
+  ["2nd Mizukage","Hijau","Kuning","Hijau","Biru"],
+  ["Onoki","Biru","Biru","Biru","Biru"],
+  ["A","Merah","Merah","Merah","Merah"],
+  ["Mu","Hijau","Hijau","Kuning","Hijau"],
+  ["Orochimaru","Merah","Kuning","Merah","Biru"],
+  ["Jiraya","Biru","Kuning","Merah","Hijau"],
+  ["Mei Terumi","Kuning","Hijau","Hijau","Kuning"],
+  ["Tsunade","Hijau","Hijau","Hijau","Hijau"],
+  ["4th Kazekage","Biru","Merah","Biru","Hijau"],
+  ["Kinkaku","Merah","Merah","Kuning","Kuning"],
+  ["3rd Raikage","Biru","Hijau","Merah","Merah"],
+  ["Guy","Merah","Kuning","Merah","Kuning"],
+  ["Itachi","Kuning","Merah","Merah","Merah"],
+  ["Kakashi","Kuning","Biru","Merah","Merah"],
+  ["Ginkaku","Hijau","Kuning","Hijau","Merah"],
+  ["Tobi","Hijau","Biru","Kuning","Merah"],
+  ["Kabuto Yakushi","Hijau","Merah","Hijau","Merah"],
+  ["Pain","Kuning","Hijau","Merah","Hijau"],
+  ["Sage Naruto","Merah","Biru","Merah","Kuning"],
+  ["Killer Bee","Hijau","Kuning","Kuning","Merah"],
+  ["Boruto","Hijau","Biru","Kuning","Merah"],
+  ["Six Path Madara","Merah","Merah","Merah","Merah"],
+  ["Mangekyo Sasuke","Merah","Merah","Merah","Kuning"],
+  ["Nine Tails Naruto","Hijau","Merah","Merah","Merah"],
+  ["Six Paths Obito","Merah","Merah","Kuning","Hijau"],
+  ["Hashirama","Biru","Merah","Merah","Biru"],
+  ["Madara","Biru","Hijau","Merah","Merah"],
+  ["Gaara Shinobi Commander","Kuning","Merah","Hijau","Kuning"],
+  ["Jigen","Kuning","Merah","Biru","Hijau"],
+  ["Tobirama","Kuning","Merah","Kuning","Biru"],
+  ["3rd Hokage","Kuning","Hijau","Merah","Merah"],
+  ["Minato","Kuning","Kuning","Kuning","Kuning"],
+  ["Kakashi Double Sharingan","Biru","Merah","Hijau","Hijau"],
+  ["Garo","Merah","Kuning","Hijau","Merah"],
+  ["Amado","Biru","Hijau","Merah","Kuning"],
+  ["Otsutsuki Isshiki","Hijau","Merah","Kuning","Hijau"],
+  ["Byron Naruto","Biru","Hijau","Biru","Kuning"],
+  ["Jigen Karma Mode","Kuning","Biru","Merah","Kuning"],
+  ["Otsutsuki Kaguya","Merah","Kuning","Hijau","Kuning"],
+  ["Rinegan Sasuke","Kuning","Merah","Hijau","Kuning"],
+  ["Boruto Karma Mode","Hijau","Biru","Biru","Merah"],
+  ["Kawaki","Biru","Kuning","Merah","Kuning"],
+  ["Otsutsuki Momoshiki","Kuning","Biru","Hijau","Merah"],
+  ["Kashin Koji","Hijau","Merah","Merah","Biru"],
+  ["Sage Mitsuki","Biru","Biru","Kuning","Merah"],
+  ["Boro","Merah","Hijau","Biru","Kuning"],
+  ["Deruta","Hijau","Kuning","Merah","Biru"],
+  ["Uchiha Sarada","Merah","Hijau","Hijau","Biru"]
+]
 
 print("\n--- Ninja Heroes Deploy ---")
 print("by fb.com/tontasy || tontasy#4986\n")
-
-print("----------")
-for c, desc in warna.items():
-    print(f"{c} = {desc}")
-print("----------")
 
 ninja = [[None, None, None, None, None], [None, None, None, None, None], [None, None, None, None, None], [None, None, None, None, None], [None, None, None, None, None], [None, None, None, None, None], [None, None, None, None, None], [None, None, None, None, None], [None, None, None, None, None], [None, None, None, None, None], [None, None, None, None, None], [None, None, None, None, None]]
 ninjautama = [[None, None, None, None, None], [None, None, None, None, None], [None, None, None, None, None]]
 
 for i in range(12):
-    ninja[i][0] = input(f"Nama Ninja Deploy {i + 1}: ")
+    ulang = True
 
-    while True:
-        ninja[i][1] = input(f"- atas (m/b/h/k): ")
-        ninja[i][2] = input(f"- kanan (m/b/h/k): ")
-        ninja[i][3] = input(f"- bawah (m/b/h/k): ")
-        ninja[i][4] = input(f"- kiri (m/b/h/k): ")
+    while ulang:
+        ninja[i][0] = input(f"Nama Ninja Deploy {i + 1}: ")
 
-        if {ninja[i][1], ninja[i][2], ninja[i][3], ninja[i][4]} <= warna.keys():
-            break
-        else:
-            print("Pilih m/b/h/k")
-            print(ninja[i][1], ninja[i][2], ninja[i][3], ninja[i][4])      
+        for j in range(len(dataninja)):
+            if ninja[i][0] in dataninja[j] and ulang:
+                ulang = False
+                ninja[i] = dataninja[j]
+                break
+        
+        if ulang: print("Nama tidak ditemukan")
 
 for i in range(3):
-    ninjautama[i][0] = input(f"Nama Ninja Utama Slot {i + 1}: ")
+    ulang = True
 
-    while True:
-        ninjautama[i][1] = input(f"- atas (m/b/h/k): ")
-        ninjautama[i][2] = input(f"- kanan (m/b/h/k): ")
-        ninjautama[i][3] = input(f"- bawah (m/b/h/k): ")
-        ninjautama[i][4] = input(f"- kiri (m/b/h/k): ")
+    while ulang:
+        ninjautama[i][0] = input(f"Nama Ninja Utama Slot {i + 1}: ")
 
-        if {ninjautama[i][1], ninjautama[i][2], ninjautama[i][3], ninjautama[i][4]} <= warna.keys():
-            break
-        else:
-            print("Pilih m/b/h/k")
-            print(ninjautama[i][1], ninjautama[i][2], ninjautama[i][3], ninjautama[i][4])
+        for j in range(len(dataninja)):
+            if ninjautama[i][0] in dataninja[j] and ulang:
+                ulang = False
+                ninjautama[i] = dataninja[j]
+                break
+    
+        if ulang: print("Nama tidak ditemukan")
 
 atribut = {
     "HP": "HP",
