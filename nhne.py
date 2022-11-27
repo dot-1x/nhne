@@ -293,23 +293,23 @@ for index, i in enumerate(perm):
             prio["Ag"][1] += 10
     
     if nu[0][2] == nu[1][4]:
-        if i[11][1] == m:
+        if nu[0][2] == m:
             prio["At"][1] += 10
-        elif i[11][1] == b:
+        elif nu[0][2] == b:
             prio["D"][1] += 10
-        elif i[11][1] == h:
+        elif nu[0][2] == h:
             prio["HP"][1] += 10
-        elif i[11][1] == k:
+        elif nu[0][2] == k:
             prio["Ag"][1] += 10
 
     if nu[1][2] == nu[2][4]:
-        if i[11][1] == m:
+        if nu[1][2] == m:
             prio["At"][1] += 10
-        elif i[11][1] == b:
+        elif nu[1][2] == b:
             prio["D"][1] += 10
-        elif i[11][1] == h:
+        elif nu[1][2] == h:
             prio["HP"][1] += 10
-        elif i[11][1] == k:
+        elif nu[1][2] == k:
             prio["Ag"][1] += 10
             
     totalawal = prio["At"][1] + prio["D"][1] + prio["HP"][1] + prio["Ag"][1]
@@ -347,22 +347,16 @@ for index, i in enumerate(perm):
                     deploy = i
 
     prio["At"][1], prio["D"][1], prio["HP"][1], prio["Ag"][1] = 0, 0, 0, 0
-    
-    if index == 479001:
-        end = time.time()
-        print(f"estimasi waktu: {round((end - start) * 1000 / 60)} menit")
-        print(f"Harap tunggu...")
-    
-    if index == 4790016:
-        end = time.time()
-        print(f"estimasi waktu: {round((end - start) * 100 / 60)} menit")
-        print(f"Harap tunggu...")
 
-    if index == 47900160:
+    if index == 4790016 or index == 47900160 or index == 47900160*2 or index == 47900160*3 or index == 47900160*4 or index == 47900160*5 or index == 47900160*6 or index == 47900160*7 or index == 47900160*8 or index == 47900160*9:
         end = time.time()
-        print(f"estimasi waktu: {round((end - start) * 10 / 60)} menit")
-        print(f"Harap tunggu...")
-
+        print(f"estimasi waktu: {round((end - start) * 100 / 60)} menit", end="\r")
+    
+    if index == 47900160*10:
+        end = time.time()
+        print(f"selesai")
+        print(f"waktu terlampaui: {round((end - start) * 100 / 60)} menit")
+        
 print("--- Atribut ---")
 print("Attack:", prio["At"][0])
 print("Defense:", prio["D"][0])
