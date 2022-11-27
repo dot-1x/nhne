@@ -13,7 +13,8 @@ warna = {
     k: "kuning"
 }
 
-print("\n--- Ninja Heroes Deploy ---\n")
+print("\n--- Ninja Heroes Deploy ---")
+print("by fb.com/tontasy || tontasy#4986\n")
 
 print("----------")
 for c, desc in warna.items():
@@ -350,6 +351,21 @@ for index, i in enumerate(perm):
     if index == 479001:
         end = time.time()
         print(f"estimasi waktu: {round((end - start) * 1000 / 60)} menit")
+        print(f"Harap tunggu...")
+    
+    if index == 4790016:
+        end = time.time()
+        print(f"estimasi waktu: {round((end - start) * 100 / 60)} menit")
+        print(f"Harap tunggu...")
+
+    if index == 4790016 * 2:
+        end = time.time()
+        print(f"estimasi waktu: {round((end - start) * 50 / 60)} menit")
+        print(f"Harap tunggu...")
+
+    if index == 4790016 * 5:
+        end = time.time()
+        print(f"estimasi waktu: {round((end - start) * 20 / 60)} menit")
         print(f"Harap tunggu...")
     
 print("--- Atribut ---")
