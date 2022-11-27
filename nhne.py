@@ -89,7 +89,7 @@ dataninja = [
   ["A","Merah","Merah","Merah","Merah"],
   ["Mu","Hijau","Hijau","Kuning","Hijau"],
   ["Orochimaru","Merah","Kuning","Merah","Biru"],
-  ["Jiraya","Biru","Kuning","Merah","Hijau"],
+  ["Jiraiya","Biru","Kuning","Merah","Hijau"],
   ["Mei Terumi","Kuning","Hijau","Hijau","Kuning"],
   ["Tsunade","Hijau","Hijau","Hijau","Hijau"],
   ["4th Kazekage","Biru","Merah","Biru","Hijau"],
@@ -461,46 +461,46 @@ for index, i in enumerate(perm):
                     deploy = i
 
     prio["At"][1], prio["D"][1], prio["HP"][1], prio["Ag"][1] = 0, 0, 0, 0
-
+    
     if index == 4790016:
         end = time.time()
-        print(f"estimasi waktu: {round((end - start) * 100 / 60)} menit", end="\r")
+        print(f"estimasi waktu: {round((end - start) * 100 / 60)} menit")
     
     if index == 47900160:
         end = time.time()
-        print(f"estimasi waktu: {round((end - start) * 10 / 60)} menit", end="\r")
+        print(f"estimasi waktu: {round((end - start) * 10 / 60)} menit")
 
     if index == 47900160*2:
         end = time.time()
-        print(f"estimasi waktu: {round((end - start) * (10 / 2) / 60)} menit", end="\r")
+        print(f"estimasi waktu: {round((end - start) * (10 / 2) / 60)} menit")
 
     if index == 47900160*3:
         end = time.time()
-        print(f"estimasi waktu: {round((end - start) * (10 / 3) / 60)} menit", end="\r")
+        print(f"estimasi waktu: {round((end - start) * (10 / 3) / 60)} menit")
 
     if index == 47900160*4:
         end = time.time()
-        print(f"estimasi waktu: {round((end - start) * (10 / 4) / 60)} menit", end="\r")
+        print(f"estimasi waktu: {round((end - start) * (10 / 4) / 60)} menit")
 
     if index == 47900160*5:
         end = time.time()
-        print(f"estimasi waktu: {round((end - start) * (10 / 5) / 60)} menit", end="\r")
+        print(f"estimasi waktu: {round((end - start) * (10 / 5) / 60)} menit")
 
     if index == 47900160*6:
         end = time.time()
-        print(f"estimasi waktu: {round((end - start) * (10 / 6) / 60)} menit", end="\r")
+        print(f"estimasi waktu: {round((end - start) * (10 / 6) / 60)} menit")
 
     if index == 47900160*7:
         end = time.time()
-        print(f"estimasi waktu: {round((end - start) * (10 / 7) / 60)} menit", end="\r")    
+        print(f"estimasi waktu: {round((end - start) * (10 / 7) / 60)} menit")    
     
     if index == 47900160*8:
         end = time.time()
-        print(f"estimasi waktu: {round((end - start) * (10 / 8) / 60)} menit", end="\r")
+        print(f"estimasi waktu: {round((end - start) * (10 / 8) / 60)} menit")
 
     if index == 47900160*9:
         end = time.time()
-        print(f"estimasi waktu: {round((end - start) * (10 / 9) / 60)} menit", end="\r")
+        print(f"estimasi waktu: {round((end - start) * (10 / 9) / 60)} menit")
 
     if index == 47900160*10:
         end = time.time()
