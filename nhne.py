@@ -465,46 +465,56 @@ for index, i in enumerate(perm):
     if index == 4790016:
         end = time.time()
         print(f"estimasi waktu: {round((end - start) * 100 / 60)} menit")
-        print(f"waktu terlampaui: {round((end - start) / 60)} menit", end="\r")
+        print(f"waktu terlampaui: {round((end - start) / 60)} menit", end="\r\r")
     
     if index == 47900160:
         end = time.time()
-        print(f"waktu terlampaui: {round((end - start) / 60)} menit", end="\r")
+        print(f"estimasi waktu: {round((end - start) * 10 / 60)} menit")
+        print(f"waktu terlampaui: {round((end - start) / 60)} menit", end="\r\r")
 
     if index == 47900160*2:
         end = time.time()
-        print(f"waktu terlampaui: {round((end - start) / 60)} menit", end="\r")
+        print(f"estimasi waktu: {round((end - start) * (10 / 2) / 60)} menit")
+        print(f"waktu terlampaui: {round((end - start) / 60)} menit", end="\r\r")
 
     if index == 47900160*3:
         end = time.time()
-        print(f"waktu terlampaui: {round((end - start) / 60)} menit", end="\r")
+        print(f"estimasi waktu: {round((end - start) * (10 / 3) / 60)} menit")
+        print(f"waktu terlampaui: {round((end - start) / 60)} menit", end="\r\r")
 
     if index == 47900160*4:
         end = time.time()
-        print(f"waktu terlampaui: {round((end - start) / 60)} menit", end="\r")
+        print(f"estimasi waktu: {round((end - start) * (10 / 4) / 60)} menit")
+        print(f"waktu terlampaui: {round((end - start) / 60)} menit", end="\r\r")
 
     if index == 47900160*5:
         end = time.time()
-        print(f"waktu terlampaui: {round((end - start) / 60)} menit", end="\r")
+        print(f"estimasi waktu: {round((end - start) * (10 / 5) / 60)} menit")
+        print(f"waktu terlampaui: {round((end - start) / 60)} menit", end="\r\r")
 
     if index == 47900160*6:
         end = time.time()
-        print(f"waktu terlampaui: {round((end - start) / 60)} menit", end="\r")
+        print(f"estimasi waktu: {round((end - start) * (10 / 6) / 60)} menit")
+        print(f"waktu terlampaui: {round((end - start) / 60)} menit", end="\r\r")
 
     if index == 47900160*7:
         end = time.time()
-        print(f"waktu terlampaui: {round((end - start) / 60)} menit", end="\r")
+        print(f"estimasi waktu: {round((end - start) * (10 / 7) / 60)} menit")
+        print(f"waktu terlampaui: {round((end - start) / 60)} menit", end="\r\r")
     
     if index == 47900160*8:
         end = time.time()
-        print(f"waktu terlampaui: {round((end - start) / 60)} menit", end="\r")
+        print(f"estimasi waktu: {round((end - start) * (10 / 8) / 60)} menit")
+        print(f"waktu terlampaui: {round((end - start) / 60)} menit", end="\r\r")
         
     if index == 47900160*9:
         end = time.time()
-        print(f"waktu terlampaui: {round((end - start) / 60)} menit", end="\n")
+        print(f"estimasi waktu: {round((end - start) * (10 / 9) / 60)} menit")
+        print(f"waktu terlampaui: {round((end - start) / 60)} menit", end="\r\r")
 
     if index == 47900160*10:
         end = time.time()
+        print(f"estimasi waktu: {round((end - start) * 1 / 60)} menit")
         print(f"waktu terlampaui: {round((end - start) / 60)} menit")
         print(f"selesai")
         
