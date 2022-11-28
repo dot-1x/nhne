@@ -105,7 +105,7 @@ dataninja = [
   ["Sage Naruto","Merah","Biru","Merah","Kuning"],
   ["Killer Bee","Hijau","Kuning","Kuning","Merah"],
   ["Boruto","Hijau","Biru","Kuning","Merah"],
-  ["Six Path Madara","Merah","Merah","Merah","Merah"],
+  ["Six Paths Madara","Merah","Merah","Merah","Merah"],
   ["Mangekyo Sasuke","Merah","Merah","Merah","Kuning"],
   ["Nine Tails Naruto","Hijau","Merah","Merah","Merah"],
   ["Six Paths Obito","Merah","Merah","Kuning","Hijau"],
