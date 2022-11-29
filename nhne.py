@@ -1,12 +1,8 @@
-from itertools import permutations
-import time
+from itertools import combinations, permutations
+from math import comb, perm
+from time import time
 
-m = "Merah"
-b = "Biru"
-h = "Hijau"
-k = "Kuning"
-
-dataninja = [
+ninja = [
   ["Flameplate Brigand","Hijau","Biru","Kuning","Merah"],
   ["Yoroi","Biru","Kuning","Hijau","Merah"],
   ["Konoha Guard","Hijau","Merah","Kuning","Kuning"],
@@ -134,387 +130,549 @@ dataninja = [
   ["Deruta","Hijau","Kuning","Merah","Biru"],
   ["Uchiha Sarada","Merah","Hijau","Hijau","Biru"]
 ]
+comboskill = [
+  ["Team 7",0,0,0,0,"Naruto","Sakura","Sasuke"],
+  ["Uchiha Clan",8,0,0,0,"Sasuke","Itachi","Obito","Madara"],
+  ["Team 3",0,0,0,0,"Tenten","Lee","Nenji"],
+  ["Team 10",0,0,0,0,"Ino","Choji","Shikamaru"],
+  ["Team 8",0,0,0,0,"Hinata","Kiba Inuzuka","Shino"],
+  ["Ramen Mentor and Apprentice",0,0,5,0,"Naruto","Iruka"],
+  ["Duo Patrol",2,0,0,0,"Konoha Guard","Konoha Sentry"],
+  ["Sarutobi Clan",4,0,0,0,"3rd Hokage","Asuma","Konohamaru"],
+  ["Teacher Comes",0,0,0,0,"Kakashi","Guy","Asuma","Yuuhi Kurenai"],
+  ["Hidden Sand Squad",0,0,0,0,"Gaara","Temari","Kankuro"],
+  ["Special Jonin",12,0,0,0,"Ebisu","Ibiki","Gekkou Hayate","Aoba Yamashiro","Genma Shiranui","Anko Mitarashi"],
+  ["Till Death",0,4,0,0,"Zabuza","Haku"],
+  ["Hidden Sound Squad",0,0,0,0,"Kidomaru","Tayuya","Sakon and Ukon","Jirobo","Kimimaro"],
+  ["I am a Girl",0,0,0,8,"Sakura","Ino","Tenten","Hinata","Temari","Shizune","Anko Mitarashi","Yuuhi Kurenai"],
+  ["Konoha 12 Ninjas",10,10,10,10,"Naruto","Sakura","Sasuke","Tenten","Lee","Nenji","Ino","Choji","Shikamaru","Hinata","Kiba Inuzuka","Shino"],
+  ["Worthy Opponent",3,0,0,0,"Naruto","Sasuke","Lee","Gaara"],
+  ["Hyuga Clan",0,4,0,0,"Hinata","Nenji"],
+  ["Hokage Anbu",0,0,0,0,"Danzo","Sai","Anbu Guard","Anbu Sentry"],
+  ["Passerby",4,4,4,4,"Mizuki","Flameplate Brigand","Yoroi","Tsurugi Misumi","Kimada"],
+  ["Secret Love?",0,4,0,0,"Hinata","Naruto"],
+  ["Team Hawk",0,0,5,0,"Sasuke","Suigetsu","Karin","Jugo"],
+  ["Power of the Cursed Seal",3,0,0,0,"Cursed Seal Sasuke","Jugo"],
+  ["Almost Lover",0,5,0,0,"Yuuhi Kurenai","Asuma"],
+  ["Naruto's Mentor",0,0,0,10,"Iruka","Kakashi","Yamato"],
+  ["Wind Kingdom",0,10,0,0,"Gaara","Temari","Kankuro","Sasori","Baki","Granny Chiyo","4th Kazekage"],
+  ["Puppeteer ",4,0,0,0,"Granny Chiyo","Sasori","Kankuro"],
+  ["Tailed Beast Jinchuriki",10,10,10,10,"Gaara","Two Tails Jinchuriki","Three Tails Jinchuriki","Four Tails Jinchuriki","Five Tails Jinchuriki","Six Tails Jinchuriki","Seven Tails Jinchuriki","Killer Bee","Naruto"],
+  ["Akatsuki",12,0,0,0,"Tobi","Zetsu","Pain","Konan","Itachi","Kisame","Orochimaru","Deidara","Sasori","Hidan","Kakuzu"],
+  ["Power of the Nine Tails",8,0,0,0,"Naruto","Sage Naruto","Nine Tails Naruto"],
+  ["Mystery Man",0,15,0,0,"Tobi","Obito","Six Paths Obito"],
+  ["Nemesis",0,0,0,8,"Itachi","Orochimaru"],
+  ["Thunder Kingdom",0,0,0,13,"A","Killer Bee","3rd Raikage","Darui"],
+  ["Group of Zombies",0,0,0,0,"Mu","Hanzo","2nd Mizukage","3rd Raikage","4th Kazekage","3rd Hokage"],
+  ["Fire's Will",12,0,0,0,"Hashirama","Tobirama","3rd Hokage","Minato","Tsunade"],
+  ["Seven Swordsman of the Mist",4,0,0,0,"Zabuza","Suigetsu","Kisame"],
+  ["Orochi",0,0,5,0,"Orochimaru","Kabuto","Kabuto Yakushi"],
+  ["Mizukage Team",0,0,0,0,"Mei Terumi","Ao","Chojuro"],
+  ["Five Kages",9,9,9,9,"Tsunade","A","Mei Terumi","Onoki","Kazekage Gaara"],
+  ["Three Ninjas",6,6,6,6,"Jiraiya","Tsunade","Orochimaru"],
+  ["Bloodboil Youth",4,0,0,0,"Lee","Guy"],
+  ["Love Love Paradise",0,0,7,0,"Jiraiya","Kakashi"],
+  ["The Same Eyes",0,0,0,7,"Kakashi","Obito"],
+  ["Child of Destiny",0,7,0,0,"Pain","Sage Naruto"],
+  ["Past Team",0,0,10,0,"Minato","Kakashi","Obito"],
+  ["The First Generation",5,5,5,5,"Hashirama","Madara"],
+  ["Lonely Childhood",0,7,0,0,"Naruto","Gaara","Haku","Kimimaro"],
+  ["Female Go-getter",0,0,0,0,"Yuuhi Kurenai","Mei Terumi","Tsunade"],
+  ["Secret Love Alliance",0,0,4,0,"Hinata","Karin"],
+  ["Get Bento",0,0,10,0,"Zabuza","Kimimaro","Itachi","Asuma","Pain"],
+  ["Hokage Candidate",0,9,0,0,"Danzo","Kakashi","Sage Naruto"],
+  ["Tailed Beast Hunters",0,0,0,0,"Deidara","Sasori","Kakuzu","Hidan","Itachi","Kisame"],
+  ["Raikage Team",0,0,0,0,"A","Killer Bee","Darui"],
+  ["Body Guard",0,0,0,0,"Darui","Ao","Chojuro","Temari","Kankuro"],
+  ["10 Years of Naruto",10,10,10,10,"Naruto","Sasuke","Sage Naruto","Cursed Seal Sasuke","Nine Tails Naruto","Mangekyo Sasuke"],
+  ["Golden Bachelor",0,0,0,0,"Kazekage Gaara","Kakashi","Killer Bee"],
+  ["Planet of the Apes",0,0,6,0,"3rd Hokage","Four Tails Jinchuriki"],
+  ["I have a mount",0,0,0,5,"Deidara","Sai","Kiba Inuzuka"],
+  ["Sage status",5,0,0,0,"Sage Naruto","Kabuto Yakushi"],
+  ["Old Man",0,0,0,0,"3rd Hokage","Onoki","Danzo","Granny Chiyo"],
+  ["Undying Shell",0,0,6,0,"Sasori","Kakuzu","Pain"],
+  ["Medic Ninja",0,0,8,0,"Sakura","Shizune","Tsunade","Kabuto","Granny Chiyo","Karin"],
+  ["Gold and Silver Brothers",0,7,0,0,"Kinkaku","Ginkaku"],
+  ["A pot of balls",5,5,5,5,"Konohamaru","Shikamaru","Kidomaru","Orochimaru"],
+  ["Hokage Traitor",0,0,0,0,"Orochimaru","Kabuto","Cursed Seal Sasuke","Itachi","Mizuki"],
+  ["Instant kill",0,0,0,4,"Baki","Gekkou Hayate"],
+  ["Death Debt",0,8,0,0,"Pain","Konan","Hanzo"],
+  ["Cell of the First Hokage",0,0,14,0,"Hashirama","Six Paths Madara","Orochimaru","Kabuto Yakushi"],
+  ["Traceless",0,0,0,10,"Zetsu","Tobi","Minato"],
+  ["Full Brother",0,0,0,0,"Sasuke","Itachi","A","Killer Bee"],
+  ["Kazekage Team",0,0,0,0,"Kazekage Gaara","Temari","Kankuro"],
+  ["Die Together",0,0,0,0,"Mu","2nd Mizukage"],
+  ["Apprenticeship",0,0,0,0,"Jiraiya","Pain","Konan"],
+  ["Mangekyo",0,0,0,0,"Mangekyo Sasuke","Madara","Obito","Kakashi","Itachi"],
+  ["The Rinnegan",8,8,8,8,"Pain","Six Paths Obito","Six Paths Madara"],
+  ["Boruto Team 7",0,0,15,15,"Boruto Karma Mode","Uchiha Sarada","Sage Mitsuki"],
+  ["Sasuke Family",0,0,0,14,"Uchiha Sarada","Rinegan Sasuke","Sakura"],
+  ["Ootsuki Clan",11,11,11,11,"Otsutsuki Momoshiki","Otsutsuki Kaguya","Otsutsuki Isshiki"],
+  ["Naruto Family",0,0,16,0,"Hinata","Byron Naruto","Boruto"],
+  ["Kara Member",17,17,17,17,"Kashin Koji","Kawaki","Deruta","Boro","Garo","Jigen","Jigen Karma Mode","Amado"],
+  ["Step Brother",0,15,0,0,"Boruto","Kawaki"],
+  ["Karma Brother",18,0,0,0,"Kawaki","Boruto Karma Mode"],
+  ["New Father and Son",16,0,0,16,"Byron Naruto","Kawaki","Boruto Karma Mode"],
+  ["Uchiha Revenger",0,0,0,9,"Sasuke","Cursed Seal Sasuke","Mangekyo Sasuke","Rinegan Sasuke"],
+  ["More than Blood",0,0,8,0,"Orochimaru","Kabuto Yakushi","Sage Mitsuki"],
+  ["Nanadaime Path",11,0,0,0,"Naruto","Sage Naruto","Nine Tails Naruto","Byron Naruto"],
+  ["Kurama Sacrifice",16,0,0,0,"Byron Naruto","Otsutsuki Isshiki"],
+  ["Moon Eye Plan",0,15,15,0,"Six Paths Madara","Otsutsuki Kaguya","Six Paths Obito"],
+  ["Hokage and Shadow",13,0,13,0,"Rinegan Sasuke","Byron Naruto"],
+  ["Time Travel",0,0,9,9,"Rinegan Sasuke","Jiraiya","Boruto","Naruto"],
+  ["Rokudaime Path",10,0,10,0,"Kakashi","Kakashi Double Sharingan"],
+  ["Senju Clan",0,0,15,0,"Hashirama","Tobirama","Tsunade"],
+  ["Perfect Clone",7,0,7,7,"Jiraiya","Kashin Koji"],
+  ["Searching My Real Mother",0,0,10,0,"Uchiha Sarada","Sakura","Karin"],
+  ["Creator Human Weapon",12,12,12,0,"Amado","Deruta","Kashin Koji"],
+  ["Allied Shinobi Forces",8,8,8,8,"Gaara Shinobi Commander","Tsunade","Mei Terumi","A","Onoki"]
+]
 
-print("\n--- Ninja Heroes Deploy ---")
-print("by fb.com/tontasy || tontasy#4986\n")
+ninjateam = []
+ninjadeploy = []
 
-ninja = [[None, None, None, None, None], [None, None, None, None, None], [None, None, None, None, None], [None, None, None, None, None], [None, None, None, None, None], [None, None, None, None, None], [None, None, None, None, None], [None, None, None, None, None], [None, None, None, None, None], [None, None, None, None, None], [None, None, None, None, None], [None, None, None, None, None]]
-ninjautama = [[None, None, None, None, None], [None, None, None, None, None], [None, None, None, None, None]]
+def kalkulasicomboskill():
+    global ninjateam, ninjadeploy
 
-for i in range(12):
-    ulang = True
+    ownedcomboskill = []
+    calonninjadeploy = []
+    atributprioritas = [[], []]
+    nilaiatributprioritas = 0
 
-    while ulang:
-        ninja[i][0] = input(f"Nama Ninja Deploy {i + 1}: ")
+    while True:
+        atributprioritas[0] = input("Atribut Combo Skill Utama (HP/Attack/Agility/Defense): ")
 
-        for j in range(len(dataninja)):
-            if ninja[i][0] in dataninja[j] and ulang:
-                ulang = False
-                ninja[i] = dataninja[j]
+        if {atributprioritas[0]} <= {"HP", "Attack", "Agility", "Defense"}:
+            if atributprioritas[0] == "HP":
+                atributprioritas[1] = 3
+            elif atributprioritas[0] == "Attack":
+                atributprioritas[1] = 1
+            elif atributprioritas[0] == "Agility":
+                atributprioritas[1] = 4
+            elif atributprioritas[0] == "Defense":
+                atributprioritas[1] = 2
+            break
+        else:
+            print("Atribut tidak diketahui")
+
+    print(f"\nTidak semua combo skill akan dikalkulasi, akan tetapi hanya combo skill yang memiliki persentase atribut {atributprioritas[0]}")
+    input("Tekan Enter untuk melanjutkan...")
+
+    print("")
+    for i in comboskill:
+        if i[atributprioritas[1]] == 0:
+            continue
+
+        while True:
+            yn = input(f"Punya combo skill {i[0]} (y/n)? ")
+
+            if yn == "y":
+                ownedcomboskill.append(i)
                 break
+            elif yn == "n":
+                break
+            else:
+                print("Input tidak diketahui")
+
+    for i in ownedcomboskill:
+        calonninjadeploy += i[5:]
+        calonninjadeploy = [*set(calonninjadeploy)]
+
+    calonninjadeploy = list(set(calonninjadeploy) - set(ninjateam))
+
+    if len(calonninjadeploy) < 12: print("Kekurangan ninja") and quit()
+    kombinasi = combinations(calonninjadeploy, 12)
+
+    waktuawal = time()
+    for index, i in enumerate(kombinasi):
+        i = set(list(i) + ninjateam)
+        activecomboskill = []
+        nilaiatributprioritasawal = 0
+
+        for j in ownedcomboskill:
+            if set(j[5:]) <= i:
+                activecomboskill.append(j)
+
+        for j in activecomboskill:
+            nilaiatributprioritasawal += j[atributprioritas[1]]
+
+            if nilaiatributprioritasawal >= nilaiatributprioritas:
+                nilaiatributprioritas = nilaiatributprioritasawal
+                ninjadeploy = i
+
+        hitungwaktu = True
+        if hitungwaktu and index + 1 == round(comb(len(calonninjadeploy), 12) / 100):
+            print(f"\nEstimasi waktu: {round((time() - waktuawal) * 100 / 60)} menit")
+            print("Harap tunggu...\n")
+            hitungwaktu = False
+
+    ninjadeploy = list(ninjadeploy - set(ninjateam))
+
+    print("--- Atribut ---")
+    print(f"{atributprioritas[0]}: {nilaiatributprioritas}%")
+    print("---- Ninja ----")
+    for i in ninjadeploy:
+        print(i)
+    for i in ninjateam:
+        print(i)
+def kalkulasideploy():
+    global ninjateam, ninjadeploy
+    prioritas = [None, None, None, None]
+    nilaiprioritas = {
+        "HP": [0, 0],
+        "Attack": [0, 0],
+        "Agility": [0, 0],
+        "Defense": [0, 0]
+    }
+    deploy = None
+
+    for index, i in enumerate(ninjadeploy):
+        for j in ninja:
+            if i in j:
+                ninjadeploy[index] = j
+
+    for index, i in enumerate(ninjateam):
+        for j in ninja:
+            if i in j:
+                ninjateam[index] = j
+                
+    while True:
+        prioritas = input("Prioritas 1  (Contoh: HP>Attack>Agility>Defense): ").split(">")
+
+        if set(prioritas) == {"HP", "Attack", "Agility", "Defense"}:
+            break
+        else:
+            print("Tidak sesuai")
+
+    permutasi = permutations(ninjadeploy)
+
+    waktuawal = time()
+    for index, i in enumerate(permutasi):
+        nilaiprioritastotal = nilaiprioritas["HP"][0] + nilaiprioritas["Attack"][0] + nilaiprioritas["Agility"][0] + nilaiprioritas["Defense"][0]
+
+        if i[0][2] == i[1][4]:
+            if i[0][2] == "Merah":
+                nilaiprioritas["Attack"][1] += 10
+            elif i[0][2] == "Biru":
+                nilaiprioritas["Defense"][1] += 10
+            elif i[0][2] == "Hijau":
+                nilaiprioritas["HP"][1] += 10
+            elif i[0][2] == "Kuning":
+                nilaiprioritas["Agility"][1] += 10
+
+        if i[1][2] == i[2][4]:
+            if i[1][2] == "Merah":
+                nilaiprioritas["Attack"][1] += 10
+            elif i[1][2] == "Biru":
+                nilaiprioritas["Defense"][1] += 10
+            elif i[1][2] == "Hijau":
+                nilaiprioritas["HP"][1] += 10
+            elif i[1][2] == "Kuning":
+                nilaiprioritas["Agility"][1] += 10
         
-        if ulang: print("Nama tidak ditemukan")
+        if i[1][3] == ninjateam[0][1]:
+            if i[1][3] == "Merah":
+                nilaiprioritas["Attack"][1] += 10
+            elif i[1][3] == "Biru":
+                nilaiprioritas["Defense"][1] += 10
+            elif i[1][3] == "Hijau":
+                nilaiprioritas["HP"][1] += 10
+            elif i[1][3] == "Kuning":
+                nilaiprioritas["Agility"][1] += 10
+        
+        if i[2][2] == i[3][4]:
+            if i[2][2] == "Merah":
+                nilaiprioritas["Attack"][1] += 10
+            elif i[2][2] == "Biru":
+                nilaiprioritas["Defense"][1] += 10
+            elif i[2][2] == "Hijau":
+                nilaiprioritas["HP"][1] += 10
+            elif i[2][2] == "Kuning":
+                nilaiprioritas["Agility"][1] += 10
+        
+        if i[2][3] == ninjateam[1][1]:
+            if i[2][3] == "Merah":
+                nilaiprioritas["Attack"][1] += 10
+            elif i[2][3] == "Biru":
+                nilaiprioritas["Defense"][1] += 10
+            elif i[2][3] == "Hijau":
+                nilaiprioritas["HP"][1] += 10
+            elif i[2][3] == "Kuning":
+                nilaiprioritas["Agility"][1] += 10
+        
+        if i[3][2] == i[4][4]:
+            if i[3][2] == "Merah":
+                nilaiprioritas["Attack"][1] += 10
+            elif i[3][2] == "Biru":
+                nilaiprioritas["Defense"][1] += 10
+            elif i[3][2] == "Hijau":
+                nilaiprioritas["HP"][1] += 10
+            elif i[3][2] == "Kuning":
+                nilaiprioritas["Agility"][1] += 10
+
+        if i[3][3] == ninjateam[2][1]:
+            if i[3][3] == "Merah":
+                nilaiprioritas["Attack"][1] += 10
+            elif i[3][3] == "Biru":
+                nilaiprioritas["Defense"][1] += 10
+            elif i[3][3] == "Hijau":
+                nilaiprioritas["HP"][1] += 10
+            elif i[3][3] == "Kuning":
+                nilaiprioritas["Agility"][1] += 10
+
+        if i[5][1] == i[0][3]:
+            if i[5][1] == "Merah":
+                nilaiprioritas["Attack"][1] += 10
+            elif i[5][1] == "Biru":
+                nilaiprioritas["Defense"][1] += 10
+            elif i[5][1] == "Hijau":
+                nilaiprioritas["HP"][1] += 10
+            elif i[5][1] == "Kuning":
+                nilaiprioritas["Agility"][1] += 10
+        
+        if i[5][2] == ninjateam[0][4]:
+            if i[5][2] == "Merah":
+                nilaiprioritas["Attack"][1] += 10
+            elif i[5][2] == "Biru":
+                nilaiprioritas["Defense"][1] += 10
+            elif i[5][2] == "Hijau":
+                nilaiprioritas["HP"][1] += 10
+            elif i[5][2] == "Kuning":
+                nilaiprioritas["Agility"][1] += 10
+        
+        if i[6][1] == i[4][3]:
+            if i[6][1] == "Merah":
+                nilaiprioritas["Attack"][1] += 10
+            elif i[6][1] == "Biru":
+                nilaiprioritas["Defense"][1] += 10
+            elif i[6][1] == "Hijau":
+                nilaiprioritas["HP"][1] += 10
+            elif i[6][1] == "Kuning":
+                nilaiprioritas["Agility"][1] += 10
+        
+        if i[6][4] == ninjateam[2][2]:
+            if i[6][4] == "Merah":
+                nilaiprioritas["Attack"][1] += 10
+            elif i[6][4] == "Biru":
+                nilaiprioritas["Defense"][1] += 10
+            elif i[6][4] == "Hijau":
+                nilaiprioritas["HP"][1] += 10
+            elif i[6][4] == "Kuning":
+                nilaiprioritas["Agility"][1] += 10
+        
+        if i[7][1] == i[5][3]:
+            if i[7][1] == "Merah":
+                nilaiprioritas["Attack"][1] += 10
+            elif i[7][1] == "Biru":
+                nilaiprioritas["Defense"][1] += 10
+            elif i[7][1] == "Hijau":
+                nilaiprioritas["HP"][1] += 10
+            elif i[7][1] == "Kuning":
+                nilaiprioritas["Agility"][1] += 10
+        
+        if i[7][2] == i[8][4]:
+            if i[7][2] == "Merah":
+                nilaiprioritas["Attack"][1] += 10
+            elif i[7][2] == "Biru":
+                nilaiprioritas["Defense"][1] += 10
+            elif i[7][2] == "Hijau":
+                nilaiprioritas["HP"][1] += 10
+            elif i[7][2] == "Kuning":
+                nilaiprioritas["Agility"][1] += 10
+        
+        if i[8][1] == ninjateam[0][3]:
+            if i[8][1] == "Merah":
+                nilaiprioritas["Attack"][1] += 10
+            elif i[8][1] == "Biru":
+                nilaiprioritas["Defense"][1] += 10
+            elif i[8][1] == "Hijau":
+                nilaiprioritas["HP"][1] += 10
+            elif i[8][1] == "Kuning":
+                nilaiprioritas["Agility"][1] += 10
+        
+        if i[8][2] == i[9][4]:
+            if i[8][2] == "Merah":
+                nilaiprioritas["Attack"][1] += 10
+            elif i[8][2] == "Biru":
+                nilaiprioritas["Defense"][1] += 10
+            elif i[8][2] == "Hijau":
+                nilaiprioritas["HP"][1] += 10
+            elif i[8][2] == "Kuning":
+                nilaiprioritas["Agility"][1] += 10
+        
+        if i[9][1] == ninjateam[1][3]:
+            if i[9][1] == "Merah":
+                nilaiprioritas["Attack"][1] += 10
+            elif i[9][1] == "Biru":
+                nilaiprioritas["Defense"][1] += 10
+            elif i[9][1] == "Hijau":
+                nilaiprioritas["HP"][1] += 10
+            elif i[9][1] == "Kuning":
+                nilaiprioritas["Agility"][1] += 10
+        
+        if i[9][2] == i[10][4]:
+            if i[9][2] == "Merah":
+                nilaiprioritas["Attack"][1] += 10
+            elif i[9][2] == "Biru":
+                nilaiprioritas["Defense"][1] += 10
+            elif i[9][2] == "Hijau":
+                nilaiprioritas["HP"][1] += 10
+            elif i[9][2] == "Kuning":
+                nilaiprioritas["Agility"][1] += 10
+
+        if i[10][1] == ninjateam[2][3]:
+            if i[10][1] == "Merah":
+                nilaiprioritas["Attack"][1] += 10
+            elif i[10][1] == "Biru":
+                nilaiprioritas["Defense"][1] += 10
+            elif i[10][1] == "Hijau":
+                nilaiprioritas["HP"][1] += 10
+            elif i[10][1] == "Kuning":
+                nilaiprioritas["Agility"][1] += 10
+        
+        if i[10][2] == i[11][4]:
+            if i[10][2] == "Merah":
+                nilaiprioritas["Attack"][1] += 10
+            elif i[10][2] == "Biru":
+                nilaiprioritas["Defense"][1] += 10
+            elif i[10][2] == "Hijau":
+                nilaiprioritas["HP"][1] += 10
+            elif i[10][2] == "Kuning":
+                nilaiprioritas["Agility"][1] += 10
+        
+        if i[11][1] == i[6][3]:
+            if i[11][1] == "Merah":
+                nilaiprioritas["Attack"][1] += 10
+            elif i[11][1] == "Biru":
+                nilaiprioritas["Defense"][1] += 10
+            elif i[11][1] == "Hijau":
+                nilaiprioritas["HP"][1] += 10
+            elif i[11][1] == "Kuning":
+                nilaiprioritas["Agility"][1] += 10
+        
+        if ninjateam[0][2] == ninjateam[1][4]:
+            if ninjateam[0][2] == "Merah":
+                nilaiprioritas["Attack"][1] += 10
+            elif ninjateam[0][2] == "Biru":
+                nilaiprioritas["Defense"][1] += 10
+            elif ninjateam[0][2] == "Hijau":
+                nilaiprioritas["HP"][1] += 10
+            elif ninjateam[0][2] == "Kuning":
+                nilaiprioritas["Agility"][1] += 10
+
+        if ninjateam[1][2] == ninjateam[2][4]:
+            if ninjateam[1][2] == "Merah":
+                nilaiprioritas["Attack"][1] += 10
+            elif ninjateam[1][2] == "Biru":
+                nilaiprioritas["Defense"][1] += 10
+            elif ninjateam[1][2] == "Hijau":
+                nilaiprioritas["HP"][1] += 10
+            elif ninjateam[1][2] == "Kuning":
+                nilaiprioritas["Agility"][1] += 10
+
+        nilaiprioritasawaltotal = nilaiprioritas["HP"][1] + nilaiprioritas["Attack"][1] + nilaiprioritas["Agility"][1] + nilaiprioritas["Defense"][1]
+
+        if nilaiprioritasawaltotal > nilaiprioritastotal:
+            nilaiprioritas[prioritas[0]][0] = nilaiprioritas[prioritas[0]][1]
+            nilaiprioritas[prioritas[1]][0] = nilaiprioritas[prioritas[1]][1]
+            nilaiprioritas[prioritas[2]][0] = nilaiprioritas[prioritas[2]][1]
+            nilaiprioritas[prioritas[3]][0] = nilaiprioritas[prioritas[3]][1]
+            deploy = i
+        elif nilaiprioritasawaltotal == nilaiprioritastotal:
+            if nilaiprioritas[prioritas[0]][1] > nilaiprioritas[prioritas[0]][0]:
+                nilaiprioritas[prioritas[0]][0] = nilaiprioritas[prioritas[0]][1]
+                nilaiprioritas[prioritas[1]][0] = nilaiprioritas[prioritas[1]][1]
+                nilaiprioritas[prioritas[2]][0] = nilaiprioritas[prioritas[2]][1]
+                nilaiprioritas[prioritas[3]][0] = nilaiprioritas[prioritas[3]][1]
+                deploy = i
+            elif nilaiprioritas[prioritas[0]][1] == nilaiprioritas[prioritas[0]][0]:
+                if nilaiprioritas[prioritas[1]][1] > nilaiprioritas[prioritas[1]][0]:
+                    nilaiprioritas[prioritas[0]][0] = nilaiprioritas[prioritas[0]][1]
+                    nilaiprioritas[prioritas[1]][0] = nilaiprioritas[prioritas[1]][1]
+                    nilaiprioritas[prioritas[2]][0] = nilaiprioritas[prioritas[2]][1]
+                    nilaiprioritas[prioritas[3]][0] = nilaiprioritas[prioritas[3]][1]
+                    deploy = i
+                elif nilaiprioritas[prioritas[1]][1] == nilaiprioritas[prioritas[1]][0]:
+                    if nilaiprioritas[prioritas[2]][1] > nilaiprioritas[prioritas[2]][0]:
+                        nilaiprioritas[prioritas[0]][0] = nilaiprioritas[prioritas[0]][1]
+                        nilaiprioritas[prioritas[1]][0] = nilaiprioritas[prioritas[1]][1]
+                        nilaiprioritas[prioritas[2]][0] = nilaiprioritas[prioritas[2]][1]
+                        nilaiprioritas[prioritas[3]][0] = nilaiprioritas[prioritas[3]][1]
+                        deploy = i
+
+        nilaiprioritas["Attack"][1], nilaiprioritas["Defense"][1], nilaiprioritas["HP"][1], nilaiprioritas["Agility"][1] = 0, 0, 0, 0
+
+        hitungwaktu = True
+        if hitungwaktu and index + 1 == round(perm(len(ninjadeploy)) / 100):
+            print(f"\nEstimasi waktu: {round((time() - waktuawal) * 100 / 60)} menit")
+            print("Harap tunggu...\n")
+            hitungwaktu = False
+
+    print("--- Atribut ---")
+    print("Attack:", nilaiprioritas["Attack"][0])
+    print("Defense:", nilaiprioritas["Defense"][0])
+    print("HP:", nilaiprioritas["HP"][0] * 5)
+    print("Agility:", nilaiprioritas["Agility"][0])
+    print("---- Deploy ----")
+    print("Baris 1:", deploy[0][0], ",", deploy[1][0], ",", deploy[2][0], ",", deploy[3][0], ",", deploy[4][0])
+    print("Baris 2:", deploy[5][0], ",", ninjateam[0][0], ",", ninjateam[1][0], ",", ninjateam[2][0], ",", deploy[6][0])
+    print("Baris 3:", deploy[7][0], ",", deploy[8][0], ",", deploy[9][0], ",", deploy[10][0], ",", deploy[11][0])
+
+print("--------------------------")
+print("Ninja Heroes Deploy Script")
+print("          v2.0.0          ")
+print("--------------------------")
+print("    FB: fb.com/tontasy    ")
+print("     DC: tontasy#4986     \n")
+
+print("Silahkan masukkan Nama Ninja Team terlebih dahulu")
 
 for i in range(3):
-    ulang = True
+    while True:
+        namaninjateam = input(f"Nama Ninja Team No. {i + 1}: ")
 
-    while ulang:
-        ninjautama[i][0] = input(f"Nama Ninja Utama Slot {i + 1}: ")
+        for j in ninja:
+            if namaninjateam in j:
+                ninjateam.append(namaninjateam)
+        
+        if len(ninjateam) == i + 1:
+            break
+        else:
+            print("Nama ninja tidak ditemukan")
 
-        for j in range(len(dataninja)):
-            if ninjautama[i][0] in dataninja[j] and ulang:
-                ulang = False
-                ninjautama[i] = dataninja[j]
-                break
-    
-        if ulang: print("Nama tidak ditemukan")
-
-atribut = {
-    "HP": "HP",
-    "At": "Attack",
-    "Ag": "Agility",
-    "D": "Defense"
-}
-
-print("----------")
-for c, desc in atribut.items():
-    print(f"{c} = {desc}")
-print("----------")
-
-prioritas = [None, None, None, None]
-
+print("\nEksekusi Script dilakukan secara urut mulai dari Kalkulasi Combo Skill ke Kalkulasi Deploy")
 while True:
-    prioritas[0], prioritas[1], prioritas[2], prioritas[3] = input("Prioritas (Contoh: HP>At>Ag>D): ").split(">")
+    yn = input("Langsung ke Kalkulasi Deploy (y/n)? ")
 
-    if {prioritas[0], prioritas[1], prioritas[2], prioritas[3]} == atribut.keys():
+    if yn == "y":
+        print("")
+        for i in range(12):
+            while True:
+                namaninjadeploy = input(f"Nama Ninja Deploy {i + 1}: ")
+
+                for j in ninja:
+                    if namaninjadeploy in j:
+                        ninjadeploy.append(namaninjadeploy)
+                
+                if len(ninjadeploy) == i + 1:
+                    break
+                else:
+                    print("Nama ninja tidak ditemukan")
+
+        print("")
+        kalkulasideploy()
+        print("")
+        input("Tekan Enter untuk mengakhiri...")
+        break
+    elif yn == "n":
+        print("")
+        kalkulasicomboskill()
+        print("")
+        input("Tekan Enter untuk melanjutkan...")
+        print("")
+        kalkulasideploy()
+        print("")
+        input("Tekan Enter untuk mengakhiri...")
         break
     else:
-        print("Tidak sesuai")
-
-perm = permutations([ninja[0], ninja[1], ninja[2], ninja[3], ninja[4], ninja[5], ninja[6], ninja[7], ninja[8], ninja[9], ninja[10], ninja[11]])
-nu = [ninjautama[0], ninjautama[1], ninjautama[2]]
-
-prio = {
-    "HP": [0, 0],
-    "At": [0, 0],
-    "Ag": [0, 0],
-    "D": [0, 0]
-}
-
-total = 0
-deploy = ()
-
-start = time.time()
-end = None
-for index, i in enumerate(perm):
-    if i[0][2] == i[1][4]:
-        if i[0][2] == m:
-            prio["At"][1] += 10
-        elif i[0][2] == b:
-            prio["D"][1] += 10
-        elif i[0][2] == h:
-            prio["HP"][1] += 10
-        elif i[0][2] == k:
-            prio["Ag"][1] += 10
-
-    if i[1][2] == i[2][4]:
-        if i[1][2] == m:
-            prio["At"][1] += 10
-        elif i[1][2] == b:
-            prio["D"][1] += 10
-        elif i[1][2] == h:
-            prio["HP"][1] += 10
-        elif i[1][2] == k:
-            prio["Ag"][1] += 10
-    
-    if i[1][3] == nu[0][1]:
-        if i[1][3] == m:
-            prio["At"][1] += 10
-        elif i[1][3] == b:
-            prio["D"][1] += 10
-        elif i[1][3] == h:
-            prio["HP"][1] += 10
-        elif i[1][3] == k:
-            prio["Ag"][1] += 10
-    
-    if i[2][2] == i[3][4]:
-        if i[2][2] == m:
-            prio["At"][1] += 10
-        elif i[2][2] == b:
-            prio["D"][1] += 10
-        elif i[2][2] == h:
-            prio["HP"][1] += 10
-        elif i[2][2] == k:
-            prio["Ag"][1] += 10
-    
-    if i[2][3] == nu[1][1]:
-        if i[2][3] == m:
-            prio["At"][1] += 10
-        elif i[2][3] == b:
-            prio["D"][1] += 10
-        elif i[2][3] == h:
-            prio["HP"][1] += 10
-        elif i[2][3] == k:
-            prio["Ag"][1] += 10
-    
-    if i[3][2] == i[4][4]:
-        if i[3][2] == m:
-            prio["At"][1] += 10
-        elif i[3][2] == b:
-            prio["D"][1] += 10
-        elif i[3][2] == h:
-            prio["HP"][1] += 10
-        elif i[3][2] == k:
-            prio["Ag"][1] += 10
-
-    if i[3][3] == nu[2][1]:
-        if i[3][3] == m:
-            prio["At"][1] += 10
-        elif i[3][3] == b:
-            prio["D"][1] += 10
-        elif i[3][3] == h:
-            prio["HP"][1] += 10
-        elif i[3][3] == k:
-            prio["Ag"][1] += 10
-
-    if i[5][1] == i[0][3]:
-        if i[5][1] == m:
-            prio["At"][1] += 10
-        elif i[5][1] == b:
-            prio["D"][1] += 10
-        elif i[5][1] == h:
-            prio["HP"][1] += 10
-        elif i[5][1] == k:
-            prio["Ag"][1] += 10
-    
-    if i[5][2] == nu[0][4]:
-        if i[5][2] == m:
-            prio["At"][1] += 10
-        elif i[5][2] == b:
-            prio["D"][1] += 10
-        elif i[5][2] == h:
-            prio["HP"][1] += 10
-        elif i[5][2] == k:
-            prio["Ag"][1] += 10
-    
-    if i[6][1] == i[4][3]:
-        if i[6][1] == m:
-            prio["At"][1] += 10
-        elif i[6][1] == b:
-            prio["D"][1] += 10
-        elif i[6][1] == h:
-            prio["HP"][1] += 10
-        elif i[6][1] == k:
-            prio["Ag"][1] += 10
-    
-    if i[6][4] == nu[2][2]:
-        if i[6][4] == m:
-            prio["At"][1] += 10
-        elif i[6][4] == b:
-            prio["D"][1] += 10
-        elif i[6][4] == h:
-            prio["HP"][1] += 10
-        elif i[6][4] == k:
-            prio["Ag"][1] += 10
-    
-    if i[7][1] == i[5][3]:
-        if i[7][1] == m:
-            prio["At"][1] += 10
-        elif i[7][1] == b:
-            prio["D"][1] += 10
-        elif i[7][1] == h:
-            prio["HP"][1] += 10
-        elif i[7][1] == k:
-            prio["Ag"][1] += 10
-    
-    if i[7][2] == i[8][4]:
-        if i[7][2] == m:
-            prio["At"][1] += 10
-        elif i[7][2] == b:
-            prio["D"][1] += 10
-        elif i[7][2] == h:
-            prio["HP"][1] += 10
-        elif i[7][2] == k:
-            prio["Ag"][1] += 10
-    
-    if i[8][1] == nu[0][3]:
-        if i[8][1] == m:
-            prio["At"][1] += 10
-        elif i[8][1] == b:
-            prio["D"][1] += 10
-        elif i[8][1] == h:
-            prio["HP"][1] += 10
-        elif i[8][1] == k:
-            prio["Ag"][1] += 10
-    
-    if i[8][2] == i[9][4]:
-        if i[8][2] == m:
-            prio["At"][1] += 10
-        elif i[8][2] == b:
-            prio["D"][1] += 10
-        elif i[8][2] == h:
-            prio["HP"][1] += 10
-        elif i[8][2] == k:
-            prio["Ag"][1] += 10
-    
-    if i[9][1] == nu[1][3]:
-        if i[9][1] == m:
-            prio["At"][1] += 10
-        elif i[9][1] == b:
-            prio["D"][1] += 10
-        elif i[9][1] == h:
-            prio["HP"][1] += 10
-        elif i[9][1] == k:
-            prio["Ag"][1] += 10
-    
-    if i[9][2] == i[10][4]:
-        if i[9][2] == m:
-            prio["At"][1] += 10
-        elif i[9][2] == b:
-            prio["D"][1] += 10
-        elif i[9][2] == h:
-            prio["HP"][1] += 10
-        elif i[9][2] == k:
-            prio["Ag"][1] += 10
-
-    if i[10][1] == nu[2][3]:
-        if i[10][1] == m:
-            prio["At"][1] += 10
-        elif i[10][1] == b:
-            prio["D"][1] += 10
-        elif i[10][1] == h:
-            prio["HP"][1] += 10
-        elif i[10][1] == k:
-            prio["Ag"][1] += 10
-    
-    if i[10][2] == i[11][4]:
-        if i[10][2] == m:
-            prio["At"][1] += 10
-        elif i[10][2] == b:
-            prio["D"][1] += 10
-        elif i[10][2] == h:
-            prio["HP"][1] += 10
-        elif i[10][2] == k:
-            prio["Ag"][1] += 10
-    
-    if i[11][1] == i[6][3]:
-        if i[11][1] == m:
-            prio["At"][1] += 10
-        elif i[11][1] == b:
-            prio["D"][1] += 10
-        elif i[11][1] == h:
-            prio["HP"][1] += 10
-        elif i[11][1] == k:
-            prio["Ag"][1] += 10
-    
-    if nu[0][2] == nu[1][4]:
-        if nu[0][2] == m:
-            prio["At"][1] += 10
-        elif nu[0][2] == b:
-            prio["D"][1] += 10
-        elif nu[0][2] == h:
-            prio["HP"][1] += 10
-        elif nu[0][2] == k:
-            prio["Ag"][1] += 10
-
-    if nu[1][2] == nu[2][4]:
-        if nu[1][2] == m:
-            prio["At"][1] += 10
-        elif nu[1][2] == b:
-            prio["D"][1] += 10
-        elif nu[1][2] == h:
-            prio["HP"][1] += 10
-        elif nu[1][2] == k:
-            prio["Ag"][1] += 10
-            
-    totalawal = prio["At"][1] + prio["D"][1] + prio["HP"][1] + prio["Ag"][1]
-
-    if totalawal > total:
-        total = totalawal
-        prio[prioritas[0]][0] = prio[prioritas[0]][1]
-        prio[prioritas[1]][0] = prio[prioritas[1]][1]
-        prio[prioritas[2]][0] = prio[prioritas[2]][1]
-        prio[prioritas[3]][0] = prio[prioritas[3]][1]
-        deploy = i
-    elif totalawal == total:
-        if prio[prioritas[0]][1] > prio[prioritas[0]][0]:
-            total = totalawal
-            prio[prioritas[0]][0] = prio[prioritas[0]][1]
-            prio[prioritas[1]][0] = prio[prioritas[1]][1]
-            prio[prioritas[2]][0] = prio[prioritas[2]][1]
-            prio[prioritas[3]][0] = prio[prioritas[3]][1]
-            deploy = i
-        elif prio[prioritas[0]][1] == prio[prioritas[0]][0]:
-            if prio[prioritas[1]][1] > prio[prioritas[1]][0]:
-                total = totalawal
-                prio[prioritas[0]][0] = prio[prioritas[0]][1]
-                prio[prioritas[1]][0] = prio[prioritas[1]][1]
-                prio[prioritas[2]][0] = prio[prioritas[2]][1]
-                prio[prioritas[3]][0] = prio[prioritas[3]][1]
-                deploy = i
-            elif prio[prioritas[1]][1] == prio[prioritas[1]][0]:
-                if prio[prioritas[2]][1] > prio[prioritas[2]][0]:
-                    total = totalawal
-                    prio[prioritas[0]][0] = prio[prioritas[0]][1]
-                    prio[prioritas[1]][0] = prio[prioritas[1]][1]
-                    prio[prioritas[2]][0] = prio[prioritas[2]][1]
-                    prio[prioritas[3]][0] = prio[prioritas[3]][1]
-                    deploy = i
-
-    prio["At"][1], prio["D"][1], prio["HP"][1], prio["Ag"][1] = 0, 0, 0, 0
-    
-    if index == 4790016:
-        end = time.time()
-        print(f"{round((end - start) * 100 / 60) - round((end - start) / 60)} menit lagi", end="\r")
-    
-    if index == 47900160:
-        end = time.time()
-        print(f"{round((end - start) * 10 / 60) - round((end - start) / 60)} menit lagi", end="\r")
-
-    if index == 47900160*2:
-        end = time.time()
-        print(f"{round((end - start) * (10 / 2) / 60) - round((end - start) / 60)} menit lagi", end="\r")
-
-    if index == 47900160*3:
-        end = time.time()
-        print(f"{round((end - start) * (10 / 3) / 60) - round((end - start) / 60)} menit lagi", end="\r")
-
-    if index == 47900160*4:
-        end = time.time()
-        print(f"{round((end - start) * (10 / 4) / 60) - round((end - start) / 60)} menit lagi", end="\r")
-
-    if index == 47900160*5:
-        end = time.time()
-        print(f"{round((end - start) * (10 / 5) / 60) - round((end - start) / 60)} menit lagi", end="\r")
-
-    if index == 47900160*6:
-        end = time.time()
-        print(f"{round((end - start) * (10 / 6) / 60) - round((end - start) / 60)} menit lagi", end="\r")
-
-    if index == 47900160*7:
-        end = time.time()
-        print(f"{round((end - start) * (10 / 7) / 60) - round((end - start) / 60)} menit lagi", end="\r")
-    
-    if index == 47900160*8:
-        end = time.time()
-        print(f"{round((end - start) * (10 / 8) / 60) - round((end - start) / 60)} menit lagi", end="\r")
-        
-    if index == 47900160*9:
-        end = time.time()
-        print(f"{round((end - start) * (10 / 9) / 60) - round((end - start) / 60)} menit lagi", end="\r")
-
-    if index == 47900160*10:
-        end = time.time()
-        print(f"{round((end - start) * 1 / 60) - round((end - start) / 60)} menit lagi")
-        print(f"selesai")
-        
-print("--- Atribut ---")
-print("Attack:", prio["At"][0])
-print("Defense:", prio["D"][0])
-print("HP:", prio["HP"][0] * 5)
-print("Agility:", prio["Ag"][0])
-print("--- Deploy ---")
-print("Baris 1:", deploy[0][0], ",", deploy[1][0], ",", deploy[2][0], ",", deploy[3][0], ",", deploy[4][0])
-print("Baris 2:", deploy[5][0], ",", nu[0][0], ",", nu[1][0], ",", nu[2][0], ",", deploy[6][0])
-print("Baris 3:", deploy[7][0], ",", deploy[8][0], ",", deploy[9][0], ",", deploy[10][0], ",", deploy[11][0])
-input("Tekan Enter untuk mengakhiri...")
+        print("Perintah tidak diketahui")
