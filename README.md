@@ -1,10 +1,8 @@
 # NHNE Deploy Script
 
-Tutorial cepat: https://www.youtube.com/watch?v=TAJ0PKfeJuI
-
 Petunjuk penggunaan:
 - Pastikan Python terinstall, versi yang telah diuji Python3
-- ```git clone https://github.com/ghubo/nhne.git```
+- ```git clone https://github.com/dot-1x/nhne.git```
 - ```cd nhne```
 - ```python3 nhne.py```
 
