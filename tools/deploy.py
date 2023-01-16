@@ -9,7 +9,8 @@ from .models.ninjas import DeployNinja
 
 __all__ = [
     "check_connected",
-    "fix_pipe"
+    "fix_pipe",
+    "afix_pipe"
 
 ]
 TDeploy = Tuple[DeployNinja, ...]
@@ -51,7 +52,7 @@ def get_best(
     return total, rows
 
 
-async def _fix_pipe(ninjas: TDeploy, main_ninjas: TDeploy):
+async def afix_pipe(ninjas: TDeploy, main_ninjas: TDeploy):
     n = 1000
     permlen = math.perm(len(ninjas)) / n
     permutate = permutations(ninjas)
@@ -74,10 +75,4 @@ async def _fix_pipe(ninjas: TDeploy, main_ninjas: TDeploy):
 
 
 def fix_pipe(ninjas: TDeploy, main_ninjas: TDeploy):
-    if not loop.is_running():
-        res = loop.run_until_complete(_fix_pipe(ninjas, main_ninjas))
-    else:
-        res = asyncio.create_task(_fix_pipe(ninjas, main_ninjas))
-        while True:
-            if res.done():
-                return res.result()
+    loop.run_until_complete(afix_pipe(ninjas, main_ninjas))
