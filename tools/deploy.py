@@ -2,7 +2,8 @@ import asyncio
 import math
 from concurrent.futures import ProcessPoolExecutor
 from itertools import islice, permutations
-from typing import Iterator
+import re
+from typing import Iterator, Tuple
 
 from .models.ninjas import DeployNinja
 
@@ -11,7 +12,7 @@ __all__ = [
     "fix_pipe"
 
 ]
-TDeploy = tuple[DeployNinja, ...]
+TDeploy = Tuple[DeployNinja, ...]
 
 loop = asyncio.get_event_loop()
 
@@ -34,7 +35,7 @@ def check_connected(
 
 def get_best(
     perms: Iterator[DeployNinja],
-    main_ninjas: tuple[DeployNinja],
+    main_ninjas: Tuple[DeployNinja],
     connected: int,
     start: int,
     stop: int,
@@ -50,7 +51,7 @@ def get_best(
     return total, rows
 
 
-async def _fix_pipe(ninjas: list[DeployNinja], main_ninjas: list[DeployNinja]):
+async def _fix_pipe(ninjas: TDeploy, main_ninjas: TDeploy):
     n = 1000
     permlen = math.perm(len(ninjas)) / n
     permutate = permutations(ninjas)
@@ -72,6 +73,11 @@ async def _fix_pipe(ninjas: list[DeployNinja], main_ninjas: list[DeployNinja]):
     return permutate
 
 
-def fix_pipe(ninjas: list[DeployNinja], main_ninjas: list[DeployNinja]):
-    res = loop.run_until_complete(_fix_pipe(ninjas, main_ninjas))
-    return res
+def fix_pipe(ninjas: TDeploy, main_ninjas: TDeploy):
+    if not loop.is_running():
+        res = loop.run_until_complete(_fix_pipe(ninjas, main_ninjas))
+    else:
+        res = asyncio.create_task(_fix_pipe(ninjas, main_ninjas))
+        while True:
+            if res.done():
+                return res.result()

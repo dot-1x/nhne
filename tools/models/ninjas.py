@@ -1,5 +1,5 @@
 from enum import IntFlag, auto
-from typing import NamedTuple, TypedDict
+from typing import List, NamedTuple, TypedDict
 
 from ..data import COMBOS
 
@@ -28,4 +28,4 @@ class DeployNinja(NamedTuple):
 
 class Ninja(TypedDict):
     id: int
-    attribute: list[str]
+    attribute: List[str]

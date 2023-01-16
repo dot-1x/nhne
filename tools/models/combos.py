@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from enum import Enum, auto
-from typing import TYPE_CHECKING, NamedTuple, TypedDict
+from typing import TYPE_CHECKING, List, NamedTuple, Tuple, TypedDict
 
 if TYPE_CHECKING:
     from .ninjas import DeployNinja
@@ -22,7 +22,7 @@ class DeployCombo(NamedTuple):
     hp: int
     agility: int
     trigger: bool
-    ninjas: tuple[DeployNinja]
+    ninjas: Tuple[DeployNinja]
 
 
 class Combo(TypedDict):
@@ -32,4 +32,4 @@ class Combo(TypedDict):
     hp: int
     agility: int
     trigger: bool
-    ninjas: list[str]
+    ninjas: List[str]
