@@ -12,16 +12,13 @@ attr_mapping = {
 
 
 def get_ninja(ninja: str):
-    if ninja not in NINJAS:
-        return None
+    ninja_ = NINJAS.get(ninja.lower())
+    if ninja_ is None:
+        raise ValueError(f"Invalid Ninja {ninja}")
     return DeployNinja(
-        NINJAS.get(ninja)["id"], ninja.title(), *tuple(attr_mapping.get(a) for a in NINJAS.get(ninja)["attribute"])
+        ninja_["id"], ninja.title(), *tuple(attr_mapping.get(a) for a in ninja_["attribute"])
     )
 
 
 def get_ninjas(*ninjas: str):
-    for n in ninjas:
-        ninja = get_ninja(n)
-        if not ninja:
-            continue
-        yield ninja
+    return tuple(get_ninja(n) for n in ninjas)

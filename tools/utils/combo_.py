@@ -1,4 +1,3 @@
-from typing import Generator
 from ..data import COMBOS
 from ..models.combos import DeployCombo
 from .ninja import get_ninjas
@@ -7,12 +6,12 @@ __all__ = ["get_combo", "get_combos"]
 
 
 def get_combo(combo: str):
-    comb = COMBOS.get(combo)
+    comb = COMBOS.get(combo.lower())
     if not comb:
-        return None
+        raise ValueError(f"Invalid Combo {combo}")
     return DeployCombo(
         id_=comb["id"],
-        name=combo,
+        name=combo.title(),
         attack=comb["attack"],
         defend=comb["defend"],
         agility=comb["agility"],
@@ -23,8 +22,4 @@ def get_combo(combo: str):
 
 
 def get_combos(*combos: str):
-    for c in combos:
-        combo = get_combo(c)
-        if not combo:
-            continue
-        yield combo
+    return tuple(get_combo(n) for n in combos)

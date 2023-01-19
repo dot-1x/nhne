@@ -19,6 +19,10 @@ class DeployNinja(NamedTuple):
     bawah: NinjaAttr
     kiri: NinjaAttr
 
+    @property
+    def attrs(self):
+        return f"Up: {self.atas} Down: {self.bawah} Right: {self.kanan} Left: {self.kiri}"
+
     def get_available_combos(self):
         return [k for k, v in COMBOS.items() if self.name in v["ninjas"]]
 
