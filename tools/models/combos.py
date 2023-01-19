@@ -15,7 +15,7 @@ class ComboAttr(Enum):
 
 
 class DeployCombo(NamedTuple):
-    id: int
+    id_: int
     name: str
     attack: int
     defend: int
@@ -23,6 +23,10 @@ class DeployCombo(NamedTuple):
     agility: int
     trigger: bool
     ninjas: Tuple[DeployNinja]
+
+    @property
+    def attrs(self):
+        return (self.attack, self.defend, self.hp, self.agility)
 
 
 class Combo(TypedDict):

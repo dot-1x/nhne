@@ -513,9 +513,7 @@ def kalkulasicomboskill():
     nilaiatributprioritas = 0
 
     while True:
-        atributprioritas[0] = input(
-            "Atribut Combo Skill Utama (HP/Attack/Agility/Defense): "
-        )
+        atributprioritas[0] = input("Atribut Combo Skill Utama (HP/Attack/Agility/Defense): ")
 
         if {atributprioritas[0]} <= {"HP", "Attack", "Agility", "Defense"}:
             if atributprioritas[0] == "HP":
@@ -617,9 +615,7 @@ def kalkulasideploy():
                 ninjateam[index] = j
 
     while True:
-        prioritas = input("Prioritas 1  (Contoh: HP>Attack>Agility>Defense): ").split(
-            ">"
-        )
+        prioritas = input("Prioritas 1  (Contoh: HP>Attack>Agility>Defense): ").split(">")
 
         if set(prioritas) == {"HP", "Attack", "Agility", "Defense"}:
             break
@@ -631,10 +627,7 @@ def kalkulasideploy():
     waktuawal = time()
     for index, i in enumerate(permutasi):
         nilaiprioritastotal = (
-            nilaiprioritas["HP"][0]
-            + nilaiprioritas["Attack"][0]
-            + nilaiprioritas["Agility"][0]
-            + nilaiprioritas["Defense"][0]
+            nilaiprioritas["HP"][0] + nilaiprioritas["Attack"][0] + nilaiprioritas["Agility"][0] + nilaiprioritas["Defense"][0]
         )
 
         if i[0][2] == i[1][4]:
@@ -858,10 +851,7 @@ def kalkulasideploy():
                 nilaiprioritas["Agility"][1] += 10
 
         nilaiprioritasawaltotal = (
-            nilaiprioritas["HP"][1]
-            + nilaiprioritas["Attack"][1]
-            + nilaiprioritas["Agility"][1]
-            + nilaiprioritas["Defense"][1]
+            nilaiprioritas["HP"][1] + nilaiprioritas["Attack"][1] + nilaiprioritas["Agility"][1] + nilaiprioritas["Defense"][1]
         )
 
         if nilaiprioritasawaltotal > nilaiprioritastotal:
@@ -885,22 +875,11 @@ def kalkulasideploy():
                     nilaiprioritas[prioritas[3]][0] = nilaiprioritas[prioritas[3]][1]
                     deploy = i
                 elif nilaiprioritas[prioritas[1]][1] == nilaiprioritas[prioritas[1]][0]:
-                    if (
-                        nilaiprioritas[prioritas[2]][1]
-                        > nilaiprioritas[prioritas[2]][0]
-                    ):
-                        nilaiprioritas[prioritas[0]][0] = nilaiprioritas[prioritas[0]][
-                            1
-                        ]
-                        nilaiprioritas[prioritas[1]][0] = nilaiprioritas[prioritas[1]][
-                            1
-                        ]
-                        nilaiprioritas[prioritas[2]][0] = nilaiprioritas[prioritas[2]][
-                            1
-                        ]
-                        nilaiprioritas[prioritas[3]][0] = nilaiprioritas[prioritas[3]][
-                            1
-                        ]
+                    if nilaiprioritas[prioritas[2]][1] > nilaiprioritas[prioritas[2]][0]:
+                        nilaiprioritas[prioritas[0]][0] = nilaiprioritas[prioritas[0]][1]
+                        nilaiprioritas[prioritas[1]][0] = nilaiprioritas[prioritas[1]][1]
+                        nilaiprioritas[prioritas[2]][0] = nilaiprioritas[prioritas[2]][1]
+                        nilaiprioritas[prioritas[3]][0] = nilaiprioritas[prioritas[3]][1]
                         deploy = i
 
         (
@@ -983,9 +962,7 @@ if __name__ == "__main__":
             else:
                 print("Nama ninja tidak ditemukan")
 
-    print(
-        "\nEksekusi Script dilakukan secara urut mulai dari Kalkulasi Combo Skill ke Kalkulasi Deploy"
-    )
+    print("\nEksekusi Script dilakukan secara urut mulai dari Kalkulasi Combo Skill ke Kalkulasi Deploy")
     while True:
         yn = input("Langsung ke Kalkulasi Deploy (y/n)? ")
 

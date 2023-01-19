@@ -12,7 +12,7 @@ class NinjaAttr(IntFlag):
 
 
 class DeployNinja(NamedTuple):
-    id: int
+    id_: int
     name: str
     atas: NinjaAttr
     kanan: NinjaAttr
@@ -23,6 +23,9 @@ class DeployNinja(NamedTuple):
         return [k for k, v in COMBOS.items() if self.name in v["ninjas"]]
 
     def __str__(self) -> str:
+        return self.name
+
+    def __repr__(self) -> str:
         return self.name
 
 

@@ -1,78 +1,70 @@
 import asyncio
 import math
-from concurrent.futures import ProcessPoolExecutor
-from itertools import islice, permutations
-import re
-from typing import Iterator, Tuple
+from concurrent.futures import ThreadPoolExecutor
+from itertools import chain, islice, permutations
+from threading import Thread
+from typing import List, Tuple
 
-from .models.ninjas import DeployNinja
+import pandas as pd
 
-__all__ = [
-    "check_connected",
-    "fix_pipe",
-    "afix_pipe"
+from .utils import check_connected, TDeploy, get_best, get_combos
+from .data import MAX_NINJAS
 
-]
-TDeploy = Tuple[DeployNinja, ...]
-
-loop = asyncio.get_event_loop()
+__all__ = ["Deploy"]
+TRESULT = List[Tuple[int, TDeploy]]
 
 
-def check_connected(
-    ninjas: TDeploy, main_ninjas: TDeploy
-):
-    row1, row2, row3 = (ninjas[:5], (ninjas[5], *main_ninjas, ninjas[6]), ninjas[7:])
+class Deploy:
+    def __init__(self, ninjas: TDeploy, main_ninjas: TDeploy, ignore_dupe: bool = False) -> None:
+        if len(ninjas + main_ninjas) != MAX_NINJAS:
+            raise ValueError(f"Total Ninja Length must be {MAX_NINJAS}")
 
-    upmid = sum(r1.bawah == r2.atas for r1, r2 in zip(row1, row2))
-    downmid = sum(r2.bawah == r3.atas for r2, r3 in zip(row2, row3))
-    righthand1 = sum(n1.kanan == n2.kiri for n1, n2 in zip(row1[:-1], row1[1:]))
-    righthand2 = sum(n1.kanan == n2.kiri for n1, n2 in zip(row2[:-1], row2[1:]))
-    righthand3 = sum(n1.kanan == n2.kiri for n1, n2 in zip(row3[:-1], row3[1:]))
+        dupes = [n for n in main_ninjas if n in ninjas]
 
-    total = upmid + downmid + righthand1 + righthand2 + righthand3
+        if not ignore_dupe and dupes:
+            raise ValueError(f"Duplicate Ninja {dupes} Detected!")
 
-    return total, (row1, row2, row3)
+        self.n = 1000
+        self.permlen = math.perm(len(ninjas)) / self.n
+        self.permutate = permutations(ninjas)
 
+        conn, _ = check_connected(ninjas, main_ninjas)
+        self.current_pipe = conn
+        self.main = main_ninjas
+        self.ninjas = ninjas
+        self.rows = (ninjas[:5], (ninjas[5], *main_ninjas, ninjas[6]), ninjas[7:])
 
-def get_best(
-    perms: Iterator[DeployNinja],
-    main_ninjas: Tuple[DeployNinja],
-    connected: int,
-    start: int,
-    stop: int,
-):
-    _perms = islice(perms, start, stop)
-    while True:
-        res = next(_perms, None)
-        if not res:
-            return None
-        total, rows = check_connected(res, main_ninjas)
-        if total > connected:
-            break
-    return total, rows
-
-
-async def afix_pipe(ninjas: TDeploy, main_ninjas: TDeploy):
-    n = 1000
-    permlen = math.perm(len(ninjas)) / n
-    permutate = permutations(ninjas)
-    conn, _ = check_connected(ninjas, main_ninjas)
-    with ProcessPoolExecutor() as pool:
-        tasks = [
-            loop.run_in_executor(
-                pool,
-                get_best,
-                permutate,
-                main_ninjas,
-                conn,
-                int(permlen * x),
-                int(permlen * (x + 1) if x != (n - 1) else permlen * n),
+    def thread_fix(self, deep=False):
+        jobs: List[Thread] = []
+        res: TRESULT = []
+        for x in range(self.n):
+            job = Thread(
+                target=get_best,
+                args=[
+                    res,
+                    self.permutate if deep else islice(self.permutate, int(self.permlen * x), int(self.permlen * (x + 1))),
+                    self.main,
+                    self.current_pipe,
+                    deep
+                ],
             )
-            for x in range(n)
-        ]
-        asyncio.gather(*tasks)
-    return permutate
+            jobs.append(job)
+            job.start()
 
+        for job in jobs:
+            job.join()
+        return max(res, key=lambda n: n[0])
 
-def fix_pipe(ninjas: TDeploy, main_ninjas: TDeploy):
-    loop.run_until_complete(afix_pipe(ninjas, main_ninjas))
+    def get_combos(self):
+        combs = set(list(chain.from_iterable(n.get_available_combos() for n in self.main + self.ninjas)))
+        combos = tuple(get_combos(*list(c for c in combs)))
+        for c in combos:
+            for ninja in c.ninjas:
+                if ninja not in self.ninjas + self.main:
+                    break
+            else:
+                yield c
+
+    def get_frame_combos(self):
+        df = pd.DataFrame(tuple((*c[1:7], len(c.ninjas)) for c in self.get_combos()), columns=("name", "atk", "def", "hp", "agi", "trigger", "ninjas"))
+        return df

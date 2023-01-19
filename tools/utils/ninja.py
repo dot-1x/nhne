@@ -1,10 +1,7 @@
 from ..data import NINJAS
 from ..models.ninjas import DeployNinja, NinjaAttr
 
-__all__ = [
-    "get_ninja",
-    "get_ninjas"
-]
+__all__ = ["get_ninja", "get_ninjas"]
 
 attr_mapping = {
     "Merah": NinjaAttr.RED,
@@ -15,14 +12,16 @@ attr_mapping = {
 
 
 def get_ninja(ninja: str):
-    if not ninja.title() in NINJAS:
+    if ninja not in NINJAS:
         return None
     return DeployNinja(
-        NINJAS.get(ninja.title())["id"],
-        ninja.title(),
-        *tuple(attr_mapping.get(a) for a in NINJAS.get(ninja.title())["attribute"])
+        NINJAS.get(ninja)["id"], ninja.title(), *tuple(attr_mapping.get(a) for a in NINJAS.get(ninja)["attribute"])
     )
 
 
 def get_ninjas(*ninjas: str):
-    return tuple(get_ninja(n) for n in ninjas if n.title() in NINJAS)
+    for n in ninjas:
+        ninja = get_ninja(n)
+        if not ninja:
+            continue
+        yield ninja

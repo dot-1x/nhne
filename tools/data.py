@@ -8,10 +8,7 @@ if TYPE_CHECKING:
     from .models.combos import Combo
     from .models.ninjas import Ninja
 
-__all__ = [
-    "COMBOS",
-    "NINJAS"
-]
+__all__ = ["COMBOS", "NINJAS", "MAX_NINJAS", "MAIN_NINJAS", "DEPLOY_NINJAS"]
 
 TOOLS_PATH = Path("/".join(__file__.split("\\")[:-1]))
 
@@ -19,3 +16,6 @@ NINJAS: dict[str, Ninja]
 COMBOS: dict[str, Combo]
 
 COMBOS, NINJAS = [json.loads(p.read_text()) for p in TOOLS_PATH.glob("*.json")]
+MAX_NINJAS = 15
+MAIN_NINJAS = 3
+DEPLOY_NINJAS = 12

@@ -580,7 +580,7 @@
         "defend": 0,
         "hp": 0,
         "agility": 7,
-        "trigger": true,
+        "trigger": false,
         "ninjas": [
             "Kakashi",
             "Obito"
