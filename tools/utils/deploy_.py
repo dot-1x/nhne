@@ -36,7 +36,8 @@ def get_best(
         except ValueError:
             return NODEPLOY
         else:
-            data.append((total, rows))
+            if total > connected:
+                data.append((total, rows))
         return total, rows
     while True:
         if (perf_counter() - starttime) / 60 > times:
