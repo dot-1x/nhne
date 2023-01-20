@@ -19,3 +19,4 @@ COMBOS, NINJAS = [{k.lower():v for k,v in json.loads(p.read_text()).items()} for
 MAX_NINJAS = 15
 MAIN_NINJAS = 3
 DEPLOY_NINJAS = 12
+DEFAULT_TIMES = 7

@@ -2,6 +2,8 @@ from typing import Tuple, Iterator
 from time import perf_counter
 
 from ..models import DeployNinja
+from ..data import DEFAULT_TIMES
+
 
 TDeploy = Tuple[DeployNinja, ...]
 NODEPLOY = (0, None)
@@ -25,7 +27,8 @@ def get_best(
     main_ninjas: TDeploy,
     connected: int,
     deep: bool = False,
-    starttime: float = None
+    starttime: float = 60*DEFAULT_TIMES,
+    times: float = DEFAULT_TIMES
 ):
     if not deep:
         try:
@@ -36,7 +39,7 @@ def get_best(
             data.append((total, rows))
         return total, rows
     while True:
-        if (perf_counter() - starttime) / 60 > 7:
+        if (perf_counter() - starttime) / 60 > times:
             return NODEPLOY
         res = next(perms, None)
         if res is None:

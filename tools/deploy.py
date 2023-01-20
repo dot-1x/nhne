@@ -7,7 +7,7 @@ from typing import List, Tuple
 import pandas as pd
 
 from .utils import check_connected, TDeploy, get_best, get_combos
-from .data import MAX_NINJAS
+from .data import MAX_NINJAS, DEFAULT_TIMES
 
 __all__ = ["Deploy"]
 TRESULT = List[Tuple[int, Tuple[TDeploy]]]
@@ -31,7 +31,7 @@ class Deploy:
         self.ninjas = ninjas
         self.rows = (ninjas[:5], (ninjas[5], *main_ninjas, ninjas[6]), ninjas[7:])
 
-    def fix_pipe(self, deep=False) -> "Deploy":
+    def fix_pipe(self, deep=False, times=DEFAULT_TIMES) -> "Deploy":
         jobs: List[Thread] = []
         res: TRESULT = []
         n = 1000
@@ -47,7 +47,8 @@ class Deploy:
                     self.main,
                     self.current_pipe,
                     deep,
-                    start
+                    start,
+                    times
                 ],
             )
             jobs.append(job)
