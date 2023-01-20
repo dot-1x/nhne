@@ -1,10 +1,10 @@
 from typing import Tuple, Iterator
-from itertools import islice
+from time import perf_counter
 
 from ..models import DeployNinja
 
 TDeploy = Tuple[DeployNinja, ...]
-
+NODEPLOY = (0, None)
 
 def check_connected(ninjas: TDeploy, main_ninjas: TDeploy) -> Tuple[int, Tuple[TDeploy, TDeploy, TDeploy]]:
     row1, row2, row3 = (ninjas[:5], (ninjas[5], *main_ninjas, ninjas[6]), ninjas[7:])
@@ -24,20 +24,23 @@ def get_best(
     perms: Iterator[TDeploy],
     main_ninjas: TDeploy,
     connected: int,
-    deep: bool = False
+    deep: bool = False,
+    starttime: float = None
 ):
     if not deep:
         try:
             total, rows = max((check_connected(d, main_ninjas) for d in perms), key=lambda k: k[0])
         except ValueError:
-            return 0, None
+            return NODEPLOY
         else:
             data.append((total, rows))
         return total, rows
     while True:
+        if (perf_counter() - starttime) / 60 > 7:
+            return NODEPLOY
         res = next(perms, None)
         if res is None:
-            return 0, None
+            return NODEPLOY
         total, rows = check_connected(res, main_ninjas)
         if total > connected:
             break

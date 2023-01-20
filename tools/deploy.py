@@ -1,6 +1,7 @@
 import math
-from itertools import chain, islice, permutations
+from itertools import islice, permutations
 from threading import Thread
+from time import perf_counter
 from typing import List, Tuple
 
 import pandas as pd
@@ -30,11 +31,13 @@ class Deploy:
         self.ninjas = ninjas
         self.rows = (ninjas[:5], (ninjas[5], *main_ninjas, ninjas[6]), ninjas[7:])
 
-    def fix_pipe(self, deep=False):
+    def fix_pipe(self, deep=False) -> "Deploy":
         jobs: List[Thread] = []
         res: TRESULT = []
         n = 1000
         permlen = self.permlen/n
+
+        start = perf_counter()
         for x in range(n):
             job = Thread(
                 target=get_best,
@@ -43,7 +46,8 @@ class Deploy:
                     self.permutate if deep else islice(self.permutate, int(permlen * x), int(permlen * (x + 1))),
                     self.main,
                     self.current_pipe,
-                    deep
+                    deep,
+                    start
                 ],
             )
             jobs.append(job)
@@ -52,12 +56,20 @@ class Deploy:
         for job in jobs:
             job.join()
 
+        if not res:
+            return self
+
         _, ninjas = max(res, key=lambda n: n[0])
-        return Deploy((*ninjas[0], ninjas[1][0], ninjas[0][-1], *ninjas[-1]), (ninjas[1][1:4]))
+        new_dep = Deploy((*ninjas[0], ninjas[1][0], ninjas[0][-1], *ninjas[-1]), (ninjas[1][1:4]))
+
+        if deep and (perf_counter() - start) / 60 < 7:
+            return new_dep.fix_pipe(deep=True)
+
+        return new_dep
 
     def get_combos(self):
-        combs = set(list(chain.from_iterable(n.get_available_combos() for n in self.main + self.ninjas)))
-        combos = tuple(get_combos(*list(c for c in combs)))
+        combs = set(c for n in self.main + self.ninjas for c in n.get_available_combos())
+        combos = tuple(get_combos(*combs))
         for c in combos:
             for ninja in c.ninjas:
                 if ninja not in self.ninjas + self.main:
@@ -65,6 +77,18 @@ class Deploy:
             else:
                 yield c
 
-    def get_frame_combos(self):
-        df = pd.DataFrame(tuple((*c[1:7], len(c.ninjas)) for c in self.get_combos()), columns=("name", "atk", "def", "hp", "agi", "trigger", "ninjas"))
+    @property
+    def frame_combos(self):
+        df = pd.DataFrame(
+                tuple((*c[1:7], len(c.ninjas)) for c in self.get_combos()),
+                columns=("name", "atk", "def", "hp", "agi", "trigger", "ninjas")
+            )
         return df
+
+    @property
+    def total_combos(self):
+        sums = self.frame_combos.sum()
+        return sums.iloc[1:6]
+
+    def __repr__(self):
+        return f"Connected Pipes: {self.current_pipe}\n" + "\n".join(f"r{n}: {v}" for n, v in enumerate(self.rows, start=1))
