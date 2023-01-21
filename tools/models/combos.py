@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from enum import Enum, auto
+from enum import Enum
 from typing import TYPE_CHECKING, List, NamedTuple, Tuple, TypedDict
 
 if TYPE_CHECKING:
@@ -8,10 +8,19 @@ if TYPE_CHECKING:
 
 
 class ComboAttr(Enum):
-    HP = auto()
-    ATK = auto()
-    DEF = auto()
-    AGI = auto()
+    NAME = "Name"
+    HP = "HP"
+    ATK = "ATK"
+    DEF = "DEF"
+    AGI = "AGI"
+    TRIGGER = "Trigger"
+    NINJAS = "Ninjas"
+
+    def __repr__(self) -> str:
+        return self.value
+
+    def __str__(self) -> str:
+        return self.value
 
 
 class DeployCombo(NamedTuple):
@@ -29,7 +38,7 @@ class DeployCombo(NamedTuple):
         return (self.attack, self.defend, self.hp, self.agility)
 
 
-class Combo(TypedDict):
+class ComboDict(TypedDict):
     id: int
     attack: int
     defend: int

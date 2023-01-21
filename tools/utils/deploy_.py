@@ -8,6 +8,7 @@ from ..data import DEFAULT_TIMES
 TDeploy = Tuple[DeployNinja, ...]
 NODEPLOY = (0, None)
 
+
 def check_connected(ninjas: TDeploy, main_ninjas: TDeploy) -> Tuple[int, Tuple[TDeploy, TDeploy, TDeploy]]:
     row1, row2, row3 = (ninjas[:5], (ninjas[5], *main_ninjas, ninjas[6]), ninjas[7:])
     upmid = sum(r1.bawah == r2.atas for r1, r2 in zip(row1, row2))
@@ -27,8 +28,8 @@ def get_best(
     main_ninjas: TDeploy,
     connected: int,
     deep: bool = False,
-    starttime: float = 60*DEFAULT_TIMES,
-    times: float = DEFAULT_TIMES
+    starttime: float = 60 * DEFAULT_TIMES,
+    times: float = DEFAULT_TIMES,
 ):
     if not deep:
         try:

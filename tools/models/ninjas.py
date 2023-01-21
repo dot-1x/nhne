@@ -24,7 +24,7 @@ class DeployNinja(NamedTuple):
         return f"Up: {self.atas} Down: {self.bawah} Right: {self.kanan} Left: {self.kiri}"
 
     def get_available_combos(self):
-        return [k for k, v in COMBOS.items() if self.name in v["ninjas"]]
+        return tuple(k for k, v in COMBOS.items() if self.name in v["ninjas"])
 
     def __str__(self) -> str:
         return self.name
@@ -33,6 +33,6 @@ class DeployNinja(NamedTuple):
         return self.name
 
 
-class Ninja(TypedDict):
+class NinjaDict(TypedDict):
     id: int
     attribute: List[str]

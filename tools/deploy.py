@@ -35,7 +35,7 @@ class Deploy:
         jobs: List[Thread] = []
         res: TRESULT = []
         n = 1000
-        permlen = self.permlen/n
+        permlen = self.permlen / n
 
         start = perf_counter()
         for x in range(n):
@@ -48,7 +48,7 @@ class Deploy:
                     self.current_pipe,
                     deep,
                     start,
-                    times
+                    times,
                 ],
             )
             jobs.append(job)
@@ -79,9 +79,9 @@ class Deploy:
     @property
     def frame_combos(self):
         df = pd.DataFrame(
-                tuple((*c[1:7], len(c.ninjas)) for c in self.get_combos()),
-                columns=("name", "atk", "def", "hp", "agi", "trigger", "ninjas")
-            )
+            tuple((*c[1:7], len(c.ninjas)) for c in self.get_combos()),
+            columns=("name", "atk", "def", "hp", "agi", "trigger", "ninjas"),
+        )
         return df
 
     @property

@@ -16,7 +16,9 @@ def get_ninja(ninja: str):
     if ninja_ is None:
         raise ValueError(f"Invalid Ninja {ninja}")
     return DeployNinja(
-        ninja_["id"], ninja.title(), *tuple(attr_mapping.get(a) for a in ninja_["attribute"])
+        ninja_["id"],
+        ninja.title(),
+        *tuple(attr_mapping.get(a) for a in ninja_["attribute"]),
     )
 
 

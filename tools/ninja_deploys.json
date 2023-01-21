@@ -1168,5 +1168,14 @@
             "Hijau",
             "Merah"
         ]
+    },
+    "Urashiki": {
+        "id": 230,
+        "attribute": [
+            "Biru",
+            "Merah",
+            "Hijau",
+            "Kuning"
+        ]
     }
 }

@@ -178,7 +178,7 @@
         "defend": 0,
         "hp": 0,
         "agility": 8,
-        "trigger": true,
+        "trigger": false,
         "ninjas": [
             "Sakura",
             "Ino",
@@ -323,7 +323,7 @@
         "defend": 0,
         "hp": 0,
         "agility": 10,
-        "trigger": true,
+        "trigger": false,
         "ninjas": [
             "Iruka",
             "Kakashi",
@@ -432,7 +432,7 @@
         "defend": 0,
         "hp": 0,
         "agility": 8,
-        "trigger": true,
+        "trigger": false,
         "ninjas": [
             "Itachi",
             "Orochimaru"
@@ -444,7 +444,7 @@
         "defend": 0,
         "hp": 0,
         "agility": 13,
-        "trigger": true,
+        "trigger": false,
         "ninjas": [
             "A",
             "Killer Bee",
@@ -781,7 +781,7 @@
         "defend": 0,
         "hp": 0,
         "agility": 5,
-        "trigger": true,
+        "trigger": false,
         "ninjas": [
             "Deidara",
             "Sai",
@@ -890,7 +890,7 @@
         "defend": 0,
         "hp": 0,
         "agility": 4,
-        "trigger": true,
+        "trigger": false,
         "ninjas": [
             "Baki",
             "Gekkou Hayate"
@@ -929,7 +929,7 @@
         "defend": 0,
         "hp": 0,
         "agility": 10,
-        "trigger": true,
+        "trigger": false,
         "ninjas": [
             "Zetsu",
             "Tobi",
@@ -1035,7 +1035,7 @@
         "defend": 0,
         "hp": 0,
         "agility": 14,
-        "trigger": true,
+        "trigger": false,
         "ninjas": [
             "Uchiha Sarada",
             "Rinegan Sasuke",
@@ -1129,7 +1129,7 @@
         "defend": 0,
         "hp": 0,
         "agility": 9,
-        "trigger": true,
+        "trigger": false,
         "ninjas": [
             "Sasuke",
             "Cursed Seal Sasuke",
