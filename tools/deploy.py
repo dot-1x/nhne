@@ -8,6 +8,7 @@ import pandas as pd
 
 from .utils import check_connected, TDeploy, get_best, get_combos
 from .data import MAX_NINJAS, DEFAULT_TIMES
+from .combo import Combo
 
 __all__ = ["Deploy"]
 TRESULT = List[Tuple[int, Tuple[TDeploy]]]
@@ -77,17 +78,8 @@ class Deploy:
                 yield c
 
     @property
-    def frame_combos(self):
-        df = pd.DataFrame(
-            tuple((*c[1:7], len(c.ninjas)) for c in self.get_combos()),
-            columns=("name", "atk", "def", "hp", "agi", "trigger", "ninjas"),
-        )
-        return df
-
-    @property
-    def total_combos(self):
-        sums = self.frame_combos.sum()
-        return sums.iloc[1:6]
+    def combo(self):
+        return Combo(tuple(self.get_combos()))
 
     def __repr__(self):
         return f"Connected Pipes: {self.current_pipe}\n" + "\n".join(f"r{n}: {v}" for n, v in enumerate(self.rows, start=1))

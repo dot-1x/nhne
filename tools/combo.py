@@ -27,6 +27,10 @@ class Combo:
     def frame_combos(self):
         return pd.DataFrame(tuple((*c[1:7], len(c.ninjas)) for c in self.combos), columns=COMBO_COLUMNS)
 
+    @property
+    def total(self):
+        return self.frame_combos.sum().iloc[1:6]
+
     def get_pref(self, pref: List[ComboAttr]):
         return self.frame_combos.loc[self.frame_combos.where(self.frame_combos[pref] > 0).dropna(how="all").index]
 
