@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import List, Tuple, Union
 
 import pandas as pd
 
@@ -30,7 +30,7 @@ class Combo:
     def get_pref(self, pref: List[ComboAttr]):
         return self.frame_combos.loc[self.frame_combos.where(self.frame_combos[pref] > 0).dropna(how="all").index]
 
-    def sort(self, *, by: List[ComboAttr] = ComboAttr.HP, asc=False) -> pd.DataFrame:
+    def sort(self, *, by: Union[List[ComboAttr], ComboAttr] = ComboAttr.HP, asc=False) -> pd.DataFrame:
         return self.frame_combos.sort_values(by=by, ascending=asc)
 
     def get_index(self, idx: List[int]):

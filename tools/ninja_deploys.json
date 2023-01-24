@@ -1151,7 +1151,7 @@
             "Biru"
         ]
     },
-    "kinshiki": {
+    "Otsutsuki kinshiki": {
         "id": 228,
         "attribute": [
             "Biru",
@@ -1169,13 +1169,22 @@
             "Merah"
         ]
     },
-    "Urashiki": {
+    "Otsutsuki Urashiki": {
         "id": 230,
         "attribute": [
             "Biru",
             "Merah",
             "Hijau",
             "Kuning"
+        ]
+    },
+    "Victor": {
+        "id": 231,
+        "attribute": [
+            "Biru",
+            "Merah",
+            "Kuning",
+            "Biru"
         ]
     }
 }
