@@ -14,8 +14,13 @@ TOOLS_PATH = Path("/".join(__file__.replace("/", "\\").split("\\")[:-1]))
 NINJAS: dict[str, NinjaDict]
 COMBOS: dict[str, ComboDict]
 
-COMBOS, NINJAS = [{k.lower(): v for k, v in json.loads(p.read_text()).items()} for p in TOOLS_PATH.glob("*.json")]
+COMBOS = {
+    k.lower(): v for k, v in json.loads(Path(str(TOOLS_PATH) + "/deploy_combos.json").read_text(encoding="utf-8")).items()
+}
+NINJAS = {
+    k.lower(): v for k, v in json.loads(Path(str(TOOLS_PATH) + "/ninja_deploys.json").read_text(encoding="utf-8")).items()
+}
 MAX_NINJAS = 15
 MAIN_NINJAS = 3
 DEPLOY_NINJAS = 12
-DEFAULT_TIMES = 7
+DEFAULT_TIMES = 7.0

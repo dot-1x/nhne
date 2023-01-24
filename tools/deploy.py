@@ -63,7 +63,7 @@ class Deploy:
         _, ninjas = max(res, key=lambda n: n[0])
         new_dep = Deploy((*ninjas[0], ninjas[1][0], ninjas[1][-1], *ninjas[-1]), (ninjas[1][1:4]))
         if deep and (perf_counter() - start) / 60 < times:
-            return new_dep.fix_pipe(deep=True, times=times-int((perf_counter() - start) / 60))
+            return new_dep.fix_pipe(deep=True, times=times - ((perf_counter() - start) / 60))
 
         return new_dep
 
