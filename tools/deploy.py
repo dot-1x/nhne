@@ -4,8 +4,6 @@ from threading import Thread
 from time import perf_counter
 from typing import List, Tuple
 
-import pandas as pd
-
 from .utils import check_connected, TDeploy, get_best, get_combos
 from .data import MAX_NINJAS, DEFAULT_TIMES
 from .combo import Combo

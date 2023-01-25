@@ -1,12 +1,7 @@
 # NHNE Deploy Script
 
 Petunjuk penggunaan:
-- Pastikan Python terinstall, versi yang telah diuji Python3
-- ```git clone https://github.com/dot-1x/nhne.git```
-- ```cd nhne```
-- ```python3 nhne.py```
+Untuk tools online bisa kunjungi link dibawah
 
-Catatan:
-- Ninja Utama adalah 3 Ninja Utama Urut
-- Ninja Deploy adalah 12 Ninja lainnya
-- Ninja Utama tidak diacak, jadi pastikan urutan sesuai yang diinginkan
+- https://s.id/NHNETools
+- https://colab.research.google.com/drive/16c9kH2aaPKyB_DUWklrnVqSkNHSKRxqt?usp=sharing
