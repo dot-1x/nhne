@@ -1186,5 +1186,14 @@
             "Kuning",
             "Biru"
         ]
+    },
+    "Shikadai Nara": {
+        "id": 232,
+        "attribute": [
+            "Biru",
+            "Hijau",
+            "Kuning",
+            "Biru"
+        ]
     }
 }
