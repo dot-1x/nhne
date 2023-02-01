@@ -18,7 +18,7 @@ COMBO_COLUMNS = (
     ComboAttr.NINJAS,
 )
 
-COMB_T = Union[List[ComboAttr], ComboAttr]
+TCOMB = Union[List[ComboAttr], ComboAttr]
 
 class Combo:
     def __init__(self, combos: Tuple[DeployCombo, ...]) -> None:
@@ -36,10 +36,10 @@ class Combo:
         df = self.frame_combos.loc[self.frame_combos.where(self.frame_combos[pref] > 0).dropna(how="all").index]
         return df
 
-    def get_filter(self, pref: COMB_T) -> Tuple[DeployCombo, ...]:
+    def get_filter(self, pref: TCOMB) -> Tuple[DeployCombo, ...]:
         return tuple(self.combos[i] for i in self.get_pref(pref).index)
 
-    def sort(self, *, by: COMB_T = ComboAttr.HP, asc=False) -> pd.DataFrame:
+    def sort(self, *, by: TCOMB = ComboAttr.HP, asc=False) -> pd.DataFrame:
         return self.frame_combos.sort_values(by=by, ascending=asc)
 
     def get_index(self, idx: List[int]):

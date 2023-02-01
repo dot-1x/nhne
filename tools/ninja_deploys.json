@@ -1195,5 +1195,23 @@
             "Kuning",
             "Biru"
         ]
+    },
+    "Sage Sakura": {
+        "id": 233,
+        "attribute": [
+            "Biru",
+            "Merah",
+            "Kuning",
+            "Kuning"
+        ]
+    },
+    "Metal Lee": {
+        "id": 234,
+        "attribute": [
+            "Merah",
+            "Biru",
+            "Merah",
+            "Kuning"
+        ]
     }
 }

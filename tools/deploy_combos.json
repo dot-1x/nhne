@@ -1231,7 +1231,7 @@
         "id": 290,
         "attack": 0,
         "defend": 0,
-        "hp": 15,
+        "hp": 20,
         "agility": 0,
         "trigger": false,
         "ninjas": [
@@ -1291,6 +1291,95 @@
             "Mei Terumi",
             "A",
             "Onoki"
+        ]
+    },
+    "Nara Family": {
+        "id": 295,
+        "attack": 0,
+        "defend": 0,
+        "hp": 0,
+        "agility": 12,
+        "trigger": false,
+        "ninjas": [
+            "Shikamaru",
+            "Temari",
+            "Shikadai Nara"
+        ]
+    },
+    "Scientific Ninja Tools": {
+        "id": 296,
+        "attack": 6,
+        "defend": 0,
+        "hp": 0,
+        "agility": 6,
+        "trigger": false,
+        "ninjas": [
+            "Ao",
+            "Ao Cyborg Mode"
+        ]
+    },
+    "Uncle And Nephew": {
+        "id": 297,
+        "attack": 0,
+        "defend": 11,
+        "hp": 0,
+        "agility": 11,
+        "trigger": false,
+        "ninjas": [
+            "Gaara Shinobi Commander",
+            "Kankuro",
+            "Shikadai Nara"
+        ]
+    },
+    "Knoha Medic Ninja": {
+        "id": 298,
+        "attack": 0,
+        "defend": 10,
+        "hp": 10,
+        "agility": 0,
+        "trigger": false,
+        "ninjas": [
+            "Sage Sakura",
+            "Tsunade",
+            "Shizune"
+        ]
+    },
+    "Kama Vessel": {
+        "id": 299,
+        "attack": 15,
+        "defend": 15,
+        "hp": 15,
+        "agility": 15,
+        "trigger": false,
+        "ninjas": [
+            "Otsutsuki Isshiki",
+            "Kawaki"
+        ]
+    },
+    "Cultivate a God Tree": {
+        "id": 300,
+        "attack": 12,
+        "defend": 0,
+        "hp": 12,
+        "agility": 12,
+        "trigger": false,
+        "ninjas": [
+            "Ao Cyborg Mode",
+            "Otsutsuki Kaguya",
+            "Otsutsuki Urashiki"
+        ]
+    },
+    "Sabotage Jigen": {
+        "id": 301,
+        "attack": 15,
+        "defend": 15,
+        "hp": 0,
+        "agility": 0,
+        "trigger": false,
+        "ninjas": [
+            "Ao Cyborg Mode",
+            "Jigen",
+            "Jigen Karma Mode"
         ]
     }
 }
