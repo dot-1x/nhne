@@ -13,7 +13,9 @@ TRESULT = List[Tuple[int, Tuple[TDeploy]]]
 
 
 class Deploy:
-    def __init__(self, ninjas: TDeploy, main_ninjas: TDeploy, ignore_dupe: bool = False) -> None:
+    def __init__(
+        self, ninjas: TDeploy, main_ninjas: TDeploy, ignore_dupe: bool = False
+    ) -> None:
         if len(ninjas + main_ninjas) != MAX_NINJAS:
             raise ValueError(f"Total Ninja Length must be {MAX_NINJAS}")
 
@@ -42,7 +44,11 @@ class Deploy:
                 target=get_best,
                 args=[
                     res,
-                    self.permutate if deep else islice(self.permutate, int(permlen * x), int(permlen * (x + 1))),
+                    self.permutate
+                    if deep
+                    else islice(
+                        self.permutate, int(permlen * x), int(permlen * (x + 1))
+                    ),
                     self.main,
                     self.current_pipe,
                     deep,
@@ -59,14 +65,20 @@ class Deploy:
         if not res:
             return self
         _, ninjas = max(res, key=lambda n: n[0])
-        new_dep = Deploy((*ninjas[0], ninjas[1][0], ninjas[1][-1], *ninjas[-1]), (ninjas[1][1:4]))
+        new_dep = Deploy(
+            (*ninjas[0], ninjas[1][0], ninjas[1][-1], *ninjas[-1]), (ninjas[1][1:4])
+        )
         if deep and (perf_counter() - start) / 60 < times:
-            return new_dep.fix_pipe(deep=True, times=times - ((perf_counter() - start) / 60))
+            return new_dep.fix_pipe(
+                deep=True, times=times - ((perf_counter() - start) / 60)
+            )
 
         return new_dep
 
     def get_combos(self):
-        combs = set(c for n in self.main + self.ninjas for c in n.get_available_combos())
+        combs = set(
+            c for n in self.main + self.ninjas for c in n.get_available_combos()
+        )
         combos = tuple(get_combos(*combs))
         for c in combos:
             for ninja in c.ninjas:
@@ -80,4 +92,6 @@ class Deploy:
         return Combo(tuple(self.get_combos()))
 
     def __repr__(self):
-        return f"Connected Pipes: {self.current_pipe}\n" + "\n".join(f"r{n}: {v}" for n, v in enumerate(self.rows, start=1))
+        return f"Connected Pipes: {self.current_pipe}\n" + "\n".join(
+            f"r{n}: {v}" for n, v in enumerate(self.rows, start=1)
+        )

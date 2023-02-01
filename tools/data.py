@@ -15,10 +15,16 @@ NINJAS: dict[str, NinjaDict]
 COMBOS: dict[str, ComboDict]
 
 COMBOS = {
-    k.lower(): v for k, v in json.loads(Path(str(TOOLS_PATH) + "/deploy_combos.json").read_text(encoding="utf-8")).items()
+    k.lower(): v
+    for k, v in json.loads(
+        Path(str(TOOLS_PATH) + "/deploy_combos.json").read_text(encoding="utf-8")
+    ).items()
 }
 NINJAS = {
-    k.lower(): v for k, v in json.loads(Path(str(TOOLS_PATH) + "/ninja_deploys.json").read_text(encoding="utf-8")).items()
+    k.lower(): v
+    for k, v in json.loads(
+        Path(str(TOOLS_PATH) + "/ninja_deploys.json").read_text(encoding="utf-8")
+    ).items()
 }
 MAX_NINJAS = 15
 MAIN_NINJAS = 3

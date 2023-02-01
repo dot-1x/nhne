@@ -24,3 +24,11 @@ def get_ninja(ninja: str):
 
 def get_ninjas(*ninjas: str):
     return tuple(get_ninja(n) for n in ninjas)
+
+
+def get_upstats(current_quality: float, default: float, stars: int, dupes: int):
+    return (
+        (current_quality - default) / (stars + dupes)
+        if (stars + dupes)
+        else (current_quality - default)
+    )
