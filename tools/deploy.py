@@ -9,10 +9,12 @@ from .data import MAX_NINJAS, DEFAULT_TIMES
 from .combo import Combo
 
 __all__ = ["Deploy"]
-TRESULT = List[Tuple[int, Tuple[TDeploy]]]
+TRESULT = List[Tuple[int, Tuple[TDeploy, TDeploy, TDeploy]]]
 
 
 class Deploy:
+    """Base class for deploy
+    """
     def __init__(
         self, ninjas: TDeploy, main_ninjas: TDeploy, ignore_dupe: bool = False
     ) -> None:
@@ -35,11 +37,11 @@ class Deploy:
     def fix_pipe(self, deep=False, times=DEFAULT_TIMES) -> "Deploy":
         jobs: List[Thread] = []
         res: TRESULT = []
-        n = 1000
-        permlen = self.permlen / n
+        divide = 1000
+        permlen = self.permlen / divide
 
         start = perf_counter()
-        for x in range(n):
+        for idx in range(divide):
             job = Thread(
                 target=get_best,
                 args=[
@@ -47,7 +49,7 @@ class Deploy:
                     self.permutate
                     if deep
                     else islice(
-                        self.permutate, int(permlen * x), int(permlen * (x + 1))
+                        self.permutate, int(permlen * idx), int(permlen * (idx + 1))
                     ),
                     self.main,
                     self.current_pipe,
@@ -79,13 +81,13 @@ class Deploy:
         combs = set(
             c for n in self.main + self.ninjas for c in n.get_available_combos()
         )
-        combos = tuple(get_combos(*combs))
-        for c in combos:
-            for ninja in c.ninjas:
+        combos = get_combos(*combs)
+        for combo in combos:
+            for ninja in combo.ninjas:
                 if ninja not in self.ninjas + self.main:
                     break
             else:
-                yield c
+                yield combo
 
     @property
     def combo(self):

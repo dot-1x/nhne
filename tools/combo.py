@@ -36,10 +36,18 @@ class Combo:
         return self.frame_combos.sum().iloc[1:6]
 
     def get_pref(self, pref: List[ComboAttr]):
-        df = self.frame_combos.loc[
+        """Will Drop All Tables Thas has no :pref:
+
+        Args:
+            pref (List[ComboAttr]): List of preferences
+
+        Returns:
+            DataFrame
+        """
+        frame = self.frame_combos.loc[
             self.frame_combos.where(self.frame_combos[pref] > 0).dropna(how="all").index
         ]
-        return df
+        return frame
 
     def get_filter(self, pref: TCOMB) -> Tuple[DeployCombo, ...]:
         return tuple(self.combos[i] for i in self.get_pref(pref).index)
@@ -53,8 +61,8 @@ class Combo:
     @classmethod
     def get_by(cls, pref: List[ComboAttr]):
         comb = cls.get_all_combos()
-        df = comb.get_pref(pref)
-        comb.combos = tuple(comb.combos[i] for i in df.index)
+        frame = comb.get_pref(pref)
+        comb.combos = tuple(comb.combos[i] for i in frame.index)
         return comb
 
     @classmethod

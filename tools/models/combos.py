@@ -6,6 +6,8 @@ from typing import TYPE_CHECKING, List, NamedTuple, Tuple, TypedDict
 if TYPE_CHECKING:
     from .ninjas import DeployNinja
 
+__all__ = ("DeployCombo", "ComboDict", "ComboAttr")
+
 
 class ComboAttr(Enum):
     NAME = "Name"

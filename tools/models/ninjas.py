@@ -3,6 +3,8 @@ from typing import List, NamedTuple, TypedDict
 
 from ..data import COMBOS
 
+__all__ = ("DeployNinja", "NinjaDict", "NinjaAttr")
+
 
 class NinjaAttr(IntFlag):
     RED = auto()

@@ -1,2 +1,2 @@
-from .combos import DeployCombo, ComboDict, ComboAttr
-from .ninjas import DeployNinja, NinjaDict, NinjaAttr
+from .combos import *
+from .ninjas import *

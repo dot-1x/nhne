@@ -1,7 +1,7 @@
 from ..data import NINJAS
 from ..models.ninjas import DeployNinja, NinjaAttr
 
-__all__ = ["get_ninja", "get_ninjas"]
+__all__ = ["get_ninja", "get_ninjas", "get_upstats"]
 
 attr_mapping = {
     "Merah": NinjaAttr.RED,
