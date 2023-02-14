@@ -1,0 +1,9 @@
+[MESSAGES CONTROL]
+
+enable=bad-indentation, line-too-long
+disable=C0114, C0115, C0116
+
+[FORMAT]
+
+indent-string='    '
+max-line-length=127
