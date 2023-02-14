@@ -1213,5 +1213,23 @@
             "Merah",
             "Kuning"
         ]
+    },
+    "Code": {
+        "id": 235,
+        "attribute": [
+            "Kuning",
+            "Hijau",
+            "Biru",
+            "Merah"
+        ]
+    },
+    "Chocho Akimichi": {
+        "id": 236,
+        "attribute": [
+            "Kuning",
+            "Kuning",
+            "Hijau",
+            "Biru"
+        ]
     }
 }
