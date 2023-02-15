@@ -70,4 +70,7 @@ class Combo:
         return cls(get_combos(*tuple(COMBOS)))
 
     def __str__(self):
-        return f"Achieved Combo:\n {self.frame}\n\nTotal:\n {self.total}"
+        return f"Achieved Combo:\n{self.frame}\n\nTotal:\n{self.total}"
+
+    def __repr__(self) -> str:
+        return self.frame
