@@ -26,14 +26,14 @@ class Combo:
         self.combos = combos
 
     @property
-    def frame_combos(self):
+    def frame(self):
         return pd.DataFrame(
             tuple((*c[1:7], len(c.ninjas)) for c in self.combos), columns=COMBO_COLUMNS
         )
 
     @property
     def total(self):
-        return self.frame_combos.sum().iloc[1:6]
+        return self.frame.sum().iloc[1:6]
 
     def get_pref(self, pref: List[ComboAttr]):
         """Will Drop All Tables Thas has no :pref:
@@ -44,8 +44,8 @@ class Combo:
         Returns:
             DataFrame
         """
-        frame = self.frame_combos.loc[
-            self.frame_combos.where(self.frame_combos[pref] > 0).dropna(how="all").index
+        frame = self.frame.loc[
+            self.frame.where(self.frame[pref] > 0).dropna(how="all").index
         ]
         return frame
 
@@ -53,7 +53,7 @@ class Combo:
         return tuple(self.combos[i] for i in self.get_pref(pref).index)
 
     def sort(self, *, by: TCOMB = ComboAttr.HP, asc=False) -> pd.DataFrame:
-        return self.frame_combos.sort_values(by=by, ascending=asc)
+        return self.frame.sort_values(by=by, ascending=asc)
 
     def get_index(self, idx: List[int]):
         return tuple(self.combos[i] for i in idx)
@@ -68,3 +68,6 @@ class Combo:
     @classmethod
     def get_all_combos(cls):
         return cls(get_combos(*tuple(COMBOS)))
+
+    def __str__(self):
+        return f"Achieved Combo:\n {self.frame}\n\nTotal:\n {self.total}"
