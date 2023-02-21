@@ -17,7 +17,7 @@ def get_combo(combo: str):
         agility=comb["agility"],
         hp=comb["hp"],
         trigger=comb["trigger"],
-        ninjas=tuple(get_ninjas(*tuple(comb["ninjas"]))),
+        ninjas=get_ninjas(*tuple(comb["ninjas"])),
     )
 
 

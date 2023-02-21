@@ -33,7 +33,7 @@ class DeployCombo(NamedTuple):
     hp: int
     agility: int
     trigger: bool
-    ninjas: Tuple[DeployNinja]
+    ninjas: Tuple[DeployNinja, ...]
 
     @property
     def attrs(self):

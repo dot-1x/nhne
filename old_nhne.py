@@ -132,14 +132,43 @@ ninja = [
 ]
 comboskill = [
     ["Team 7", 0, 0, 0, 0, "Naruto", "Sakura", "Sasuke"],
-    ["Uchiha Clan", 8, 0, 0, 0, "Sasuke", "Itachi", "Obito", "Madara"],
+    [
+        "Uchiha Clan",
+        8,
+        0,
+        0,
+        0,
+        "Sasuke",
+        "Itachi",
+        "Obito",
+        "Madara",
+    ],
     ["Team 3", 0, 0, 0, 0, "Tenten", "Lee", "Nenji"],
     ["Team 10", 0, 0, 0, 0, "Ino", "Choji", "Shikamaru"],
     ["Team 8", 0, 0, 0, 0, "Hinata", "Kiba Inuzuka", "Shino"],
     ["Ramen Mentor and Apprentice", 0, 0, 5, 0, "Naruto", "Iruka"],
     ["Duo Patrol", 2, 0, 0, 0, "Konoha Guard", "Konoha Sentry"],
-    ["Sarutobi Clan", 4, 0, 0, 0, "3rd Hokage", "Asuma", "Konohamaru"],
-    ["Teacher Comes", 0, 0, 0, 0, "Kakashi", "Guy", "Asuma", "Yuuhi Kurenai"],
+    [
+        "Sarutobi Clan",
+        4,
+        0,
+        0,
+        0,
+        "3rd Hokage",
+        "Asuma",
+        "Konohamaru",
+    ],
+    [
+        "Teacher Comes",
+        0,
+        0,
+        0,
+        0,
+        "Kakashi",
+        "Guy",
+        "Asuma",
+        "Yuuhi Kurenai",
+    ],
     ["Hidden Sand Squad", 0, 0, 0, 0, "Gaara", "Temari", "Kankuro"],
     [
         "Special Jonin",
@@ -201,9 +230,29 @@ comboskill = [
         "Kiba Inuzuka",
         "Shino",
     ],
-    ["Worthy Opponent", 3, 0, 0, 0, "Naruto", "Sasuke", "Lee", "Gaara"],
+    [
+        "Worthy Opponent",
+        3,
+        0,
+        0,
+        0,
+        "Naruto",
+        "Sasuke",
+        "Lee",
+        "Gaara",
+    ],
     ["Hyuga Clan", 0, 4, 0, 0, "Hinata", "Nenji"],
-    ["Hokage Anbu", 0, 0, 0, 0, "Danzo", "Sai", "Anbu Guard", "Anbu Sentry"],
+    [
+        "Hokage Anbu",
+        0,
+        0,
+        0,
+        0,
+        "Danzo",
+        "Sai",
+        "Anbu Guard",
+        "Anbu Sentry",
+    ],
     [
         "Passerby",
         4,
@@ -218,7 +267,15 @@ comboskill = [
     ],
     ["Secret Love?", 0, 4, 0, 0, "Hinata", "Naruto"],
     ["Team Hawk", 0, 0, 5, 0, "Sasuke", "Suigetsu", "Karin", "Jugo"],
-    ["Power of the Cursed Seal", 3, 0, 0, 0, "Cursed Seal Sasuke", "Jugo"],
+    [
+        "Power of the Cursed Seal",
+        3,
+        0,
+        0,
+        0,
+        "Cursed Seal Sasuke",
+        "Jugo",
+    ],
     ["Almost Lover", 0, 5, 0, 0, "Yuuhi Kurenai", "Asuma"],
     ["Naruto's Mentor", 0, 0, 0, 10, "Iruka", "Kakashi", "Yamato"],
     [
@@ -282,7 +339,17 @@ comboskill = [
     ],
     ["Mystery Man", 0, 15, 0, 0, "Tobi", "Obito", "Six Paths Obito"],
     ["Nemesis", 0, 0, 0, 8, "Itachi", "Orochimaru"],
-    ["Thunder Kingdom", 0, 0, 0, 13, "A", "Killer Bee", "3rd Raikage", "Darui"],
+    [
+        "Thunder Kingdom",
+        0,
+        0,
+        0,
+        13,
+        "A",
+        "Killer Bee",
+        "3rd Raikage",
+        "Darui",
+    ],
     [
         "Group of Zombies",
         0,
@@ -308,10 +375,30 @@ comboskill = [
         "Minato",
         "Tsunade",
     ],
-    ["Seven Swordsman of the Mist", 4, 0, 0, 0, "Zabuza", "Suigetsu", "Kisame"],
+    [
+        "Seven Swordsman of the Mist",
+        4,
+        0,
+        0,
+        0,
+        "Zabuza",
+        "Suigetsu",
+        "Kisame",
+    ],
     ["Orochi", 0, 0, 5, 0, "Orochimaru", "Kabuto", "Kabuto Yakushi"],
     ["Mizukage Team", 0, 0, 0, 0, "Mei Terumi", "Ao", "Chojuro"],
-    ["Five Kages", 9, 9, 9, 9, "Tsunade", "A", "Mei Terumi", "Onoki", "Kazekage Gaara"],
+    [
+        "Five Kages",
+        9,
+        9,
+        9,
+        9,
+        "Tsunade",
+        "A",
+        "Mei Terumi",
+        "Onoki",
+        "Kazekage Gaara",
+    ],
     ["Three Ninjas", 6, 6, 6, 6, "Jiraiya", "Tsunade", "Orochimaru"],
     ["Bloodboil Youth", 4, 0, 0, 0, "Lee", "Guy"],
     ["Love Love Paradise", 0, 0, 7, 0, "Jiraiya", "Kakashi"],
@@ -319,11 +406,50 @@ comboskill = [
     ["Child of Destiny", 0, 7, 0, 0, "Pain", "Sage Naruto"],
     ["Past Team", 0, 0, 10, 0, "Minato", "Kakashi", "Obito"],
     ["The First Generation", 5, 5, 5, 5, "Hashirama", "Madara"],
-    ["Lonely Childhood", 0, 7, 0, 0, "Naruto", "Gaara", "Haku", "Kimimaro"],
-    ["Female Go-getter", 0, 0, 0, 0, "Yuuhi Kurenai", "Mei Terumi", "Tsunade"],
+    [
+        "Lonely Childhood",
+        0,
+        7,
+        0,
+        0,
+        "Naruto",
+        "Gaara",
+        "Haku",
+        "Kimimaro",
+    ],
+    [
+        "Female Go-getter",
+        0,
+        0,
+        0,
+        0,
+        "Yuuhi Kurenai",
+        "Mei Terumi",
+        "Tsunade",
+    ],
     ["Secret Love Alliance", 0, 0, 4, 0, "Hinata", "Karin"],
-    ["Get Bento", 0, 0, 10, 0, "Zabuza", "Kimimaro", "Itachi", "Asuma", "Pain"],
-    ["Hokage Candidate", 0, 9, 0, 0, "Danzo", "Kakashi", "Sage Naruto"],
+    [
+        "Get Bento",
+        0,
+        0,
+        10,
+        0,
+        "Zabuza",
+        "Kimimaro",
+        "Itachi",
+        "Asuma",
+        "Pain",
+    ],
+    [
+        "Hokage Candidate",
+        0,
+        9,
+        0,
+        0,
+        "Danzo",
+        "Kakashi",
+        "Sage Naruto",
+    ],
     [
         "Tailed Beast Hunters",
         0,
@@ -338,7 +464,18 @@ comboskill = [
         "Kisame",
     ],
     ["Raikage Team", 0, 0, 0, 0, "A", "Killer Bee", "Darui"],
-    ["Body Guard", 0, 0, 0, 0, "Darui", "Ao", "Chojuro", "Temari", "Kankuro"],
+    [
+        "Body Guard",
+        0,
+        0,
+        0,
+        0,
+        "Darui",
+        "Ao",
+        "Chojuro",
+        "Temari",
+        "Kankuro",
+    ],
     [
         "10 Years of Naruto",
         10,
@@ -352,11 +489,38 @@ comboskill = [
         "Nine Tails Naruto",
         "Mangekyo Sasuke",
     ],
-    ["Golden Bachelor", 0, 0, 0, 0, "Kazekage Gaara", "Kakashi", "Killer Bee"],
-    ["Planet of the Apes", 0, 0, 6, 0, "3rd Hokage", "Four Tails Jinchuriki"],
+    [
+        "Golden Bachelor",
+        0,
+        0,
+        0,
+        0,
+        "Kazekage Gaara",
+        "Kakashi",
+        "Killer Bee",
+    ],
+    [
+        "Planet of the Apes",
+        0,
+        0,
+        6,
+        0,
+        "3rd Hokage",
+        "Four Tails Jinchuriki",
+    ],
     ["I have a mount", 0, 0, 0, 5, "Deidara", "Sai", "Kiba Inuzuka"],
     ["Sage status", 5, 0, 0, 0, "Sage Naruto", "Kabuto Yakushi"],
-    ["Old Man", 0, 0, 0, 0, "3rd Hokage", "Onoki", "Danzo", "Granny Chiyo"],
+    [
+        "Old Man",
+        0,
+        0,
+        0,
+        0,
+        "3rd Hokage",
+        "Onoki",
+        "Danzo",
+        "Granny Chiyo",
+    ],
     ["Undying Shell", 0, 0, 6, 0, "Sasori", "Kakuzu", "Pain"],
     [
         "Medic Ninja",
@@ -372,7 +536,17 @@ comboskill = [
         "Karin",
     ],
     ["Gold and Silver Brothers", 0, 7, 0, 0, "Kinkaku", "Ginkaku"],
-    ["A pot of balls", 5, 5, 5, 5, "Konohamaru", "Shikamaru", "Kidomaru", "Orochimaru"],
+    [
+        "A pot of balls",
+        5,
+        5,
+        5,
+        5,
+        "Konohamaru",
+        "Shikamaru",
+        "Kidomaru",
+        "Orochimaru",
+    ],
     [
         "Hokage Traitor",
         0,
@@ -399,12 +573,51 @@ comboskill = [
         "Kabuto Yakushi",
     ],
     ["Traceless", 0, 0, 0, 10, "Zetsu", "Tobi", "Minato"],
-    ["Full Brother", 0, 0, 0, 0, "Sasuke", "Itachi", "A", "Killer Bee"],
-    ["Kazekage Team", 0, 0, 0, 0, "Kazekage Gaara", "Temari", "Kankuro"],
+    [
+        "Full Brother",
+        0,
+        0,
+        0,
+        0,
+        "Sasuke",
+        "Itachi",
+        "A",
+        "Killer Bee",
+    ],
+    [
+        "Kazekage Team",
+        0,
+        0,
+        0,
+        0,
+        "Kazekage Gaara",
+        "Temari",
+        "Kankuro",
+    ],
     ["Die Together", 0, 0, 0, 0, "Mu", "2nd Mizukage"],
     ["Apprenticeship", 0, 0, 0, 0, "Jiraiya", "Pain", "Konan"],
-    ["Mangekyo", 0, 0, 0, 0, "Mangekyo Sasuke", "Madara", "Obito", "Kakashi", "Itachi"],
-    ["The Rinnegan", 8, 8, 8, 8, "Pain", "Six Paths Obito", "Six Paths Madara"],
+    [
+        "Mangekyo",
+        0,
+        0,
+        0,
+        0,
+        "Mangekyo Sasuke",
+        "Madara",
+        "Obito",
+        "Kakashi",
+        "Itachi",
+    ],
+    [
+        "The Rinnegan",
+        8,
+        8,
+        8,
+        8,
+        "Pain",
+        "Six Paths Obito",
+        "Six Paths Madara",
+    ],
     [
         "Boruto Team 7",
         0,
@@ -415,7 +628,16 @@ comboskill = [
         "Uchiha Sarada",
         "Sage Mitsuki",
     ],
-    ["Sasuke Family", 0, 0, 0, 14, "Uchiha Sarada", "Rinegan Sasuke", "Sakura"],
+    [
+        "Sasuke Family",
+        0,
+        0,
+        0,
+        14,
+        "Uchiha Sarada",
+        "Rinegan Sasuke",
+        "Sakura",
+    ],
     [
         "Ootsuki Clan",
         11,
@@ -426,7 +648,16 @@ comboskill = [
         "Otsutsuki Kaguya",
         "Otsutsuki Isshiki",
     ],
-    ["Naruto Family", 0, 0, 16, 0, "Hinata", "Byron Naruto", "Boruto"],
+    [
+        "Naruto Family",
+        0,
+        0,
+        16,
+        0,
+        "Hinata",
+        "Byron Naruto",
+        "Boruto",
+    ],
     [
         "Kara Member",
         17,
@@ -444,7 +675,16 @@ comboskill = [
     ],
     ["Step Brother", 0, 15, 0, 0, "Boruto", "Kawaki"],
     ["Karma Brother", 18, 0, 0, 0, "Kawaki", "Boruto Karma Mode"],
-    ["New Father and Son", 16, 0, 0, 16, "Byron Naruto", "Kawaki", "Boruto Karma Mode"],
+    [
+        "New Father and Son",
+        16,
+        0,
+        0,
+        16,
+        "Byron Naruto",
+        "Kawaki",
+        "Boruto Karma Mode",
+    ],
     [
         "Uchiha Revenger",
         0,
@@ -456,7 +696,16 @@ comboskill = [
         "Mangekyo Sasuke",
         "Rinegan Sasuke",
     ],
-    ["More than Blood", 0, 0, 8, 0, "Orochimaru", "Kabuto Yakushi", "Sage Mitsuki"],
+    [
+        "More than Blood",
+        0,
+        0,
+        8,
+        0,
+        "Orochimaru",
+        "Kabuto Yakushi",
+        "Sage Mitsuki",
+    ],
     [
         "Nanadaime Path",
         11,
@@ -468,7 +717,15 @@ comboskill = [
         "Nine Tails Naruto",
         "Byron Naruto",
     ],
-    ["Kurama Sacrifice", 16, 0, 0, 0, "Byron Naruto", "Otsutsuki Isshiki"],
+    [
+        "Kurama Sacrifice",
+        16,
+        0,
+        0,
+        0,
+        "Byron Naruto",
+        "Otsutsuki Isshiki",
+    ],
     [
         "Moon Eye Plan",
         0,
@@ -479,13 +736,57 @@ comboskill = [
         "Otsutsuki Kaguya",
         "Six Paths Obito",
     ],
-    ["Hokage and Shadow", 13, 0, 13, 0, "Rinegan Sasuke", "Byron Naruto"],
-    ["Time Travel", 0, 0, 9, 9, "Rinegan Sasuke", "Jiraiya", "Boruto", "Naruto"],
-    ["Rokudaime Path", 10, 0, 10, 0, "Kakashi", "Kakashi Double Sharingan"],
+    [
+        "Hokage and Shadow",
+        13,
+        0,
+        13,
+        0,
+        "Rinegan Sasuke",
+        "Byron Naruto",
+    ],
+    [
+        "Time Travel",
+        0,
+        0,
+        9,
+        9,
+        "Rinegan Sasuke",
+        "Jiraiya",
+        "Boruto",
+        "Naruto",
+    ],
+    [
+        "Rokudaime Path",
+        10,
+        0,
+        10,
+        0,
+        "Kakashi",
+        "Kakashi Double Sharingan",
+    ],
     ["Senju Clan", 0, 0, 15, 0, "Hashirama", "Tobirama", "Tsunade"],
     ["Perfect Clone", 7, 0, 7, 7, "Jiraiya", "Kashin Koji"],
-    ["Searching My Real Mother", 0, 0, 10, 0, "Uchiha Sarada", "Sakura", "Karin"],
-    ["Creator Human Weapon", 12, 12, 12, 0, "Amado", "Deruta", "Kashin Koji"],
+    [
+        "Searching My Real Mother",
+        0,
+        0,
+        10,
+        0,
+        "Uchiha Sarada",
+        "Sakura",
+        "Karin",
+    ],
+    [
+        "Creator Human Weapon",
+        12,
+        12,
+        12,
+        0,
+        "Amado",
+        "Deruta",
+        "Kashin Koji",
+    ],
     [
         "Allied Shinobi Forces",
         8,
@@ -517,7 +818,12 @@ def kalkulasicomboskill():
             "Atribut Combo Skill Utama (HP/Attack/Agility/Defense): "
         )
 
-        if {atributprioritas[0]} <= {"HP", "Attack", "Agility", "Defense"}:
+        if {atributprioritas[0]} <= {
+            "HP",
+            "Attack",
+            "Agility",
+            "Defense",
+        }:
             if atributprioritas[0] == "HP":
                 atributprioritas[1] = 3
             elif atributprioritas[0] == "Attack":
@@ -579,8 +885,12 @@ def kalkulasicomboskill():
                 ninjadeploy = i
 
         hitungwaktu = True
-        if hitungwaktu and index + 1 == round(comb(len(calonninjadeploy), 12) / 100):
-            print(f"\nEstimasi waktu: {round((time() - waktuawal) * 100 / 60)} menit")
+        if hitungwaktu and index + 1 == round(
+            comb(len(calonninjadeploy), 12) / 100
+        ):
+            print(
+                f"\nEstimasi waktu: {round((time() - waktuawal) * 100 / 60)} menit"
+            )
             print("Harap tunggu...\n")
             hitungwaktu = False
 
@@ -617,9 +927,9 @@ def kalkulasideploy():
                 ninjateam[index] = j
 
     while True:
-        prioritas = input("Prioritas 1  (Contoh: HP>Attack>Agility>Defense): ").split(
-            ">"
-        )
+        prioritas = input(
+            "Prioritas 1  (Contoh: HP>Attack>Agility>Defense): "
+        ).split(">")
 
         if set(prioritas) == {"HP", "Attack", "Agility", "Defense"}:
             break
@@ -871,36 +1181,64 @@ def kalkulasideploy():
             nilaiprioritas[prioritas[3]][0] = nilaiprioritas[prioritas[3]][1]
             deploy = i
         elif nilaiprioritasawaltotal == nilaiprioritastotal:
-            if nilaiprioritas[prioritas[0]][1] > nilaiprioritas[prioritas[0]][0]:
-                nilaiprioritas[prioritas[0]][0] = nilaiprioritas[prioritas[0]][1]
-                nilaiprioritas[prioritas[1]][0] = nilaiprioritas[prioritas[1]][1]
-                nilaiprioritas[prioritas[2]][0] = nilaiprioritas[prioritas[2]][1]
-                nilaiprioritas[prioritas[3]][0] = nilaiprioritas[prioritas[3]][1]
+            if (
+                nilaiprioritas[prioritas[0]][1]
+                > nilaiprioritas[prioritas[0]][0]
+            ):
+                nilaiprioritas[prioritas[0]][0] = nilaiprioritas[prioritas[0]][
+                    1
+                ]
+                nilaiprioritas[prioritas[1]][0] = nilaiprioritas[prioritas[1]][
+                    1
+                ]
+                nilaiprioritas[prioritas[2]][0] = nilaiprioritas[prioritas[2]][
+                    1
+                ]
+                nilaiprioritas[prioritas[3]][0] = nilaiprioritas[prioritas[3]][
+                    1
+                ]
                 deploy = i
-            elif nilaiprioritas[prioritas[0]][1] == nilaiprioritas[prioritas[0]][0]:
-                if nilaiprioritas[prioritas[1]][1] > nilaiprioritas[prioritas[1]][0]:
-                    nilaiprioritas[prioritas[0]][0] = nilaiprioritas[prioritas[0]][1]
-                    nilaiprioritas[prioritas[1]][0] = nilaiprioritas[prioritas[1]][1]
-                    nilaiprioritas[prioritas[2]][0] = nilaiprioritas[prioritas[2]][1]
-                    nilaiprioritas[prioritas[3]][0] = nilaiprioritas[prioritas[3]][1]
+            elif (
+                nilaiprioritas[prioritas[0]][1]
+                == nilaiprioritas[prioritas[0]][0]
+            ):
+                if (
+                    nilaiprioritas[prioritas[1]][1]
+                    > nilaiprioritas[prioritas[1]][0]
+                ):
+                    nilaiprioritas[prioritas[0]][0] = nilaiprioritas[
+                        prioritas[0]
+                    ][1]
+                    nilaiprioritas[prioritas[1]][0] = nilaiprioritas[
+                        prioritas[1]
+                    ][1]
+                    nilaiprioritas[prioritas[2]][0] = nilaiprioritas[
+                        prioritas[2]
+                    ][1]
+                    nilaiprioritas[prioritas[3]][0] = nilaiprioritas[
+                        prioritas[3]
+                    ][1]
                     deploy = i
-                elif nilaiprioritas[prioritas[1]][1] == nilaiprioritas[prioritas[1]][0]:
+                elif (
+                    nilaiprioritas[prioritas[1]][1]
+                    == nilaiprioritas[prioritas[1]][0]
+                ):
                     if (
                         nilaiprioritas[prioritas[2]][1]
                         > nilaiprioritas[prioritas[2]][0]
                     ):
-                        nilaiprioritas[prioritas[0]][0] = nilaiprioritas[prioritas[0]][
-                            1
-                        ]
-                        nilaiprioritas[prioritas[1]][0] = nilaiprioritas[prioritas[1]][
-                            1
-                        ]
-                        nilaiprioritas[prioritas[2]][0] = nilaiprioritas[prioritas[2]][
-                            1
-                        ]
-                        nilaiprioritas[prioritas[3]][0] = nilaiprioritas[prioritas[3]][
-                            1
-                        ]
+                        nilaiprioritas[prioritas[0]][0] = nilaiprioritas[
+                            prioritas[0]
+                        ][1]
+                        nilaiprioritas[prioritas[1]][0] = nilaiprioritas[
+                            prioritas[1]
+                        ][1]
+                        nilaiprioritas[prioritas[2]][0] = nilaiprioritas[
+                            prioritas[2]
+                        ][1]
+                        nilaiprioritas[prioritas[3]][0] = nilaiprioritas[
+                            prioritas[3]
+                        ][1]
                         deploy = i
 
         (
@@ -912,7 +1250,9 @@ def kalkulasideploy():
 
         hitungwaktu = True
         if hitungwaktu and index + 1 == round(perm(len(ninjadeploy)) / 100):
-            print(f"\nEstimasi waktu: {round((time() - waktuawal) * 100 / 60)} menit")
+            print(
+                f"\nEstimasi waktu: {round((time() - waktuawal) * 100 / 60)} menit"
+            )
             print("Harap tunggu...\n")
             hitungwaktu = False
 

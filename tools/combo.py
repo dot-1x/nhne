@@ -28,18 +28,19 @@ class Combo:
     @property
     def frame(self):
         return pd.DataFrame(
-            tuple((*c[1:7], len(c.ninjas)) for c in self.combos), columns=COMBO_COLUMNS
+            tuple((*c[1:7], len(c.ninjas)) for c in self.combos),
+            columns=COMBO_COLUMNS,
         )
 
     @property
     def total(self):
         return self.frame.sum().iloc[1:6]
 
-    def get_pref(self, pref: List[ComboAttr]):
+    def get_pref(self, pref: TCOMB):
         """Will Drop All Tables Thas has no :pref:
 
         Args:
-            pref (List[ComboAttr]): List of preferences
+            pref (List[ComboAttr] | ComboAttr): List of preferences
 
         Returns:
             DataFrame
@@ -59,7 +60,7 @@ class Combo:
         return tuple(self.combos[i] for i in idx)
 
     @classmethod
-    def get_by(cls, pref: List[ComboAttr]):
+    def get_by(cls, pref: TCOMB):
         comb = cls.get_all_combos()
         frame = comb.get_pref(pref)
         comb.combos = tuple(comb.combos[i] for i in frame.index)
@@ -69,8 +70,5 @@ class Combo:
     def get_all_combos(cls):
         return cls(get_combos(*tuple(COMBOS)))
 
-    def __str__(self):
+    def __repr__(self):
         return f"Achieved Combo:\n{self.frame}\n\nTotal:\n{self.total}"
-
-    def __repr__(self) -> str:
-        return self.frame

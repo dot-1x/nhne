@@ -13,10 +13,13 @@ TRESULT = List[Tuple[int, Tuple[TDeploy, TDeploy, TDeploy]]]
 
 
 class Deploy:
-    """Base class for deploy
-    """
+    """Base class for deploy"""
+
     def __init__(
-        self, ninjas: TDeploy, main_ninjas: TDeploy, ignore_dupe: bool = False
+        self,
+        ninjas: TDeploy,
+        main_ninjas: TDeploy,
+        ignore_dupe: bool = False,
     ) -> None:
         if len(ninjas + main_ninjas) != MAX_NINJAS:
             raise ValueError(f"Total Ninja Length must be {MAX_NINJAS}")
@@ -32,7 +35,11 @@ class Deploy:
         self.current_pipe, _ = check_connected(ninjas, main_ninjas)
         self.main = main_ninjas
         self.ninjas = ninjas
-        self.rows = (ninjas[:5], (ninjas[5], *main_ninjas, ninjas[6]), ninjas[7:])
+        self.rows = (
+            ninjas[:5],
+            (ninjas[5], *main_ninjas, ninjas[6]),
+            ninjas[7:],
+        )
 
     def fix_pipe(self, deep=False, times=DEFAULT_TIMES) -> "Deploy":
         jobs: List[Thread] = []
@@ -49,7 +56,9 @@ class Deploy:
                     self.permutate
                     if deep
                     else islice(
-                        self.permutate, int(permlen * idx), int(permlen * (idx + 1))
+                        self.permutate,
+                        int(permlen * idx),
+                        int(permlen * (idx + 1)),
                     ),
                     self.main,
                     self.current_pipe,
@@ -68,18 +77,22 @@ class Deploy:
             return self
         _, ninjas = max(res, key=lambda n: n[0])
         new_dep = Deploy(
-            (*ninjas[0], ninjas[1][0], ninjas[1][-1], *ninjas[-1]), (ninjas[1][1:4])
+            (*ninjas[0], ninjas[1][0], ninjas[1][-1], *ninjas[-1]),
+            (ninjas[1][1:4]),
         )
         if deep and (perf_counter() - start) / 60 < times:
             return new_dep.fix_pipe(
-                deep=True, times=times - ((perf_counter() - start) / 60)
+                deep=True,
+                times=times - ((perf_counter() - start) / 60),
             )
 
         return new_dep
 
     def get_combos(self):
         combs = set(
-            c for n in self.main + self.ninjas for c in n.get_available_combos()
+            c
+            for n in self.main + self.ninjas
+            for c in n.get_available_combos()
         )
         combos = get_combos(*combs)
         for combo in combos:

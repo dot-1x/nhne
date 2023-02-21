@@ -18,7 +18,7 @@ def get_ninja(ninja: str):
     return DeployNinja(
         ninja_["id"],
         ninja.title(),
-        *tuple(attr_mapping.get(a) for a in ninja_["attribute"]),
+        *tuple(attr_mapping.get(a, NinjaAttr.RED) for a in ninja_["attribute"]),
     )
 
 
@@ -26,7 +26,9 @@ def get_ninjas(*ninjas: str):
     return tuple(get_ninja(n) for n in ninjas)
 
 
-def get_upstats(current_quality: float, default: float, stars: int, dupes: int):
+def get_upstats(
+    current_quality: float, default: float, stars: int, dupes: int
+):
     return (
         (current_quality - default) / (stars + dupes)
         if (stars + dupes)
