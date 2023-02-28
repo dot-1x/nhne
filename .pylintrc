@@ -1,7 +1,7 @@
 [MESSAGES CONTROL]
 
 enable=bad-indentation, line-too-long
-disable=C0114, C0115, C0116
+disable=C0114, C0115, C0116, R0913
 
 [FORMAT]
 
