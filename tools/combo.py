@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import List, Tuple, Union
 
 import pandas as pd
@@ -43,7 +45,7 @@ class Combo:
             pref (List[ComboAttr] | ComboAttr): List of preferences
 
         Returns:
-            DataFrame
+            DataFrame: only containing preferenced combos
         """
         frame = self.frame.loc[
             self.frame.where(self.frame[pref] > 0).dropna(how="all").index
@@ -53,6 +55,18 @@ class Combo:
     def get_filter(self, pref: TCOMB) -> Tuple[DeployCombo, ...]:
         return tuple(self.combos[i] for i in self.get_pref(pref).index)
 
+    def filter(self, pref: TCOMB) -> Combo:
+        """Return new Combo object with combos filtered
+
+        Args:
+            pref (TCOMB): preferences to keep
+
+        Returns:
+            Combo: new Combo with only preferenced combo
+        """
+        filtered = self.get_filter(pref)
+        return Combo(filtered)
+
     def sort(self, *, by: TCOMB = ComboAttr.HP, asc=False) -> pd.DataFrame:
         return self.frame.sort_values(by=by, ascending=asc)
 
@@ -60,14 +74,27 @@ class Combo:
         return tuple(self.combos[i] for i in idx)
 
     @classmethod
-    def get_by(cls, pref: TCOMB):
+    def get_by(cls, pref: TCOMB) -> Combo:
+        """Get all available combo and filter them by preferences
+
+        Args:
+            pref (TCOMB): preferences to keep
+
+        Returns:
+            Combo
+        """
         comb = cls.get_all_combos()
         frame = comb.get_pref(pref)
         comb.combos = tuple(comb.combos[i] for i in frame.index)
         return comb
 
     @classmethod
-    def get_all_combos(cls):
+    def get_all_combos(cls) -> Combo:
+        """Get all current available combos
+
+        Returns:
+            Combo
+        """
         return cls(get_combos(*tuple(COMBOS)))
 
     def __repr__(self):

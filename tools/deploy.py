@@ -32,14 +32,10 @@ class Deploy:
         self.permlen = math.perm(len(ninjas))
         self.permutate = permutations(ninjas)
 
-        self.current_pipe, _ = check_connected(ninjas, main_ninjas)
+        self.current_pipe, rows = check_connected(ninjas, main_ninjas)
         self.main = main_ninjas
         self.ninjas = ninjas
-        self.rows = (
-            ninjas[:5],
-            (ninjas[5], *main_ninjas, ninjas[6]),
-            ninjas[7:],
-        )
+        self.rows = rows
 
     def fix_pipe(self, deep=False, times=DEFAULT_TIMES) -> "Deploy":
         jobs: List[Thread] = []
@@ -110,3 +106,4 @@ class Deploy:
         return f"Connected Pipes: {self.current_pipe}\n" + "\n".join(
             f"r{n}: {v}" for n, v in enumerate(self.rows, start=1)
         )
+ 
