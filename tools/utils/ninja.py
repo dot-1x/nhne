@@ -1,3 +1,4 @@
+import re
 from ..data import NINJAS
 from ..models.ninjas import DeployNinja, NinjaAttr
 
@@ -12,6 +13,9 @@ attr_mapping = {
 
 
 def get_ninja(ninja: str):
+    if ninja.isupper():
+        found = [n for n in NINJAS if re.search(r"\w+ ".join(ninja), n.title())]
+        ninja = found[0] or ninja
     ninja_ = NINJAS.get(ninja.lower())
     if ninja_ is None:
         raise ValueError(f"Invalid Ninja {ninja}")
