@@ -13,16 +13,28 @@ attr_mapping = {
 
 
 def get_ninja(ninja: str):
-    if ninja.isupper():
-        found = [n for n in NINJAS if re.search(r"\w+ ".join(ninja), n.title())]
-        ninja = found[0] or ninja
-    ninja_ = NINJAS.get(ninja.lower())
-    if ninja_ is None:
-        raise ValueError(f"Invalid Ninja {ninja}")
+    splitted = list(ninja) if ninja.isupper() else ninja.split()
+    found = NINJAS.get(ninja.lower())  # checks the passed string first
+    if found is None:  # if not found then provide regex search
+        for key in NINJAS:
+            pattern = "".join(
+                "".join(rf"{isupper}\w+ " for isupper in word)
+                if word.isupper()
+                else f"{word} "
+                for word in splitted
+            )
+            if re.search(pattern.strip(), key.title()):
+                found = NINJAS.get(key)  # if found then we break the loop
+                ninja = key
+                break
+    if (
+        not found
+    ):  # double check the result, mypy won't recognize for ... else statement
+        raise ValueError(f"Invalid ninja {ninja}")
     return DeployNinja(
-        ninja_["id"],
+        found["id"],
         ninja.title(),
-        *tuple(attr_mapping.get(a, NinjaAttr.RED) for a in ninja_["attribute"]),
+        *tuple(attr_mapping.get(a, NinjaAttr.RED) for a in found["attribute"]),
     )
 
 
@@ -30,9 +42,7 @@ def get_ninjas(*ninjas: str):
     return tuple(get_ninja(n) for n in ninjas)
 
 
-def get_upstats(
-    current_quality: float, default: float, stars: int, dupes: int
-):
+def get_upstats(current_quality: float, default: float, stars: int, dupes: int):
     return (
         (current_quality - default) / (stars + dupes)
         if (stars + dupes)

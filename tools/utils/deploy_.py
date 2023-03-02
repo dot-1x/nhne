@@ -20,15 +20,9 @@ def check_connected(
     upmid = sum(r1.bawah == r2.atas for r1, r2 in zip(row1, row2))
     downmid = sum(r2.bawah == r3.atas for r2, r3 in zip(row2, row3))
 
-    righthand1 = sum(
-        n1.kanan == n2.kiri for n1, n2 in zip(row1[:-1], row1[1:])
-    )
-    righthand2 = sum(
-        n1.kanan == n2.kiri for n1, n2 in zip(row2[:-1], row2[1:])
-    )
-    righthand3 = sum(
-        n1.kanan == n2.kiri for n1, n2 in zip(row3[:-1], row3[1:])
-    )
+    righthand1 = sum(n1.kanan == n2.kiri for n1, n2 in zip(row1[:-1], row1[1:]))
+    righthand2 = sum(n1.kanan == n2.kiri for n1, n2 in zip(row2[:-1], row2[1:]))
+    righthand3 = sum(n1.kanan == n2.kiri for n1, n2 in zip(row3[:-1], row3[1:]))
 
     total = upmid + downmid + righthand1 + righthand2 + righthand3
 

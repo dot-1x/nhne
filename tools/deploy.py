@@ -86,9 +86,7 @@ class Deploy:
 
     def get_combos(self):
         combs = set(
-            c
-            for n in self.main + self.ninjas
-            for c in n.get_available_combos()
+            c for n in self.main + self.ninjas for c in n.get_available_combos()
         )
         combos = get_combos(*combs)
         for combo in combos:
@@ -106,4 +104,3 @@ class Deploy:
         return f"Connected Pipes: {self.current_pipe}\n" + "\n".join(
             f"r{n}: {v}" for n, v in enumerate(self.rows, start=1)
         )
- 
