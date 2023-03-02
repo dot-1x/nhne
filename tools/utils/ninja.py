@@ -12,23 +12,25 @@ attr_mapping = {
 }
 
 
+def match_regex(name: str):
+    pattern = " ".join(
+        " ".join(rf"{isupper}\w+" for isupper in word) if word.isupper() else f"{word}"
+        for word in name.split()
+    )
+    for key in NINJAS:
+        if re.search(pattern, key.title()):
+            found = NINJAS.get(key)  # if found then we break the loop
+            if found is None: # keep the double checking :D
+                raise ValueError(f"Ninja {name} not found!")
+            ninja = key
+            return (ninja, found)
+    raise ValueError(f"Ninja {name} not found!")
+
+
 def get_ninja(ninja: str):
-    splitted = list(ninja) if ninja.isupper() else ninja.split()
     found = NINJAS.get(ninja.lower())  # checks the passed string first
     if found is None:  # if not found then provide regex search
-        pattern = "".join(
-            "".join(rf"{isupper}\w+ " for isupper in word)
-            if word.isupper()
-            else f"{word} "
-            for word in splitted
-        )
-        for key in NINJAS:
-            if re.search(pattern.strip(), key.title()):
-                found = NINJAS.get(key)  # if found then we break the loop
-                ninja = key
-                break
-    if not found:  # double check the result, mypy won't recognize for . else statement
-        raise ValueError(f"Invalid ninja {ninja}")
+        ninja, found = match_regex(ninja)
     return DeployNinja(
         found["id"],
         ninja.title(),
