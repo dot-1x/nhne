@@ -46,3 +46,7 @@ def get_upstats(current_quality: float, default: float, stars: int, dupes: int):
         if (stars + dupes)
         else (current_quality - default)
     )
+
+
+def get_quality(default: float, upstats: float, stars: int = 0, dupe: int = 0):
+    return default + (upstats * (stars + dupe))
