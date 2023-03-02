@@ -14,7 +14,7 @@ attr_mapping = {
 
 def match_regex(name: str):
     pattern = " ".join(
-        " ".join(rf"{isupper}\w+" for isupper in word) if word.isupper() else f"{word}"
+        " ".join(rf"{isupper}\w+" for isupper in word) if word.isupper() else word.title()
         for word in name.split()
     )
     for key in NINJAS:
